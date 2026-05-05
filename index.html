@@ -105,8 +105,34 @@ body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--dark)}
 /* ── Anim ── */
 @keyframes fadeUp{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:translateY(0)}}
 
+/* ── Conclusiones ── */
+.concl-section{margin-top:28px;margin-bottom:32px}
+.concl-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:16px;flex-wrap:wrap;gap:10px}
+.concl-title{font-size:15px;font-weight:700;letter-spacing:-.2px;display:flex;align-items:center;gap:10px}
+.concl-title svg{width:18px;height:18px;fill:var(--green);flex-shrink:0}
+.concl-subtitle{font-size:12px;color:var(--faint);font-weight:400;margin-left:4px}
+.concl-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+.concl-card{background:var(--white);border-radius:var(--r);padding:20px 22px;box-shadow:var(--shadow);border:1px solid var(--border);border-top:3px solid transparent;animation:fadeUp .5s ease both;cursor:default;transition:box-shadow .18s,transform .18s}
+.concl-card:hover{box-shadow:0 6px 28px rgba(20,22,31,.12);transform:translateY(-2px)}
+.concl-card.opp{border-top-color:var(--green)}
+.concl-card.risk{border-top-color:var(--red)}
+.concl-card.neutral{border-top-color:#8a90b0}
+.concl-tag{display:inline-flex;align-items:center;gap:5px;font-size:10px;font-weight:700;letter-spacing:.7px;text-transform:uppercase;padding:3px 9px;border-radius:10px;margin-bottom:12px}
+.concl-tag.opp{background:var(--green-l);color:var(--green-d)}
+.concl-tag.risk{background:var(--red-l);color:var(--red)}
+.concl-tag.neutral{background:#eef0f9;color:var(--mid)}
+.concl-tag svg{width:10px;height:10px;fill:currentColor;flex-shrink:0}
+.concl-text{font-size:13px;line-height:1.65;color:var(--mid);font-weight:400}
+.concl-text strong{color:var(--dark);font-weight:600}
+.concl-metric{display:flex;align-items:baseline;gap:6px;margin-top:14px;padding-top:12px;border-top:1px solid var(--border)}
+.cm-val{font-size:19px;font-weight:700;letter-spacing:-.5px;font-family:'DM Mono',monospace}
+.cm-val.pos{color:var(--green-d)}.cm-val.neg{color:var(--red)}.cm-val.neu{color:var(--mid)}
+.cm-label{font-size:11px;color:var(--faint);line-height:1.4}
+.concl-divider{height:1px;background:linear-gradient(90deg,transparent,var(--border) 20%,var(--border) 80%,transparent);margin:28px 0 0}
+
 /* ── Responsive ── */
-@media(max-width:920px){.kpi-grid{grid-template-columns:1fr 1fr}.r2,.r3{grid-template-columns:1fr}.main{padding:16px}}
+@media(max-width:920px){.kpi-grid{grid-template-columns:1fr 1fr}.r2,.r3{grid-template-columns:1fr}.main{padding:16px}.concl-grid{grid-template-columns:1fr 1fr}}
+@media(max-width:600px){.concl-grid{grid-template-columns:1fr}}
 @media(max-width:480px){.kpi-grid{grid-template-columns:1fr}}
 </style>
 </head>
@@ -329,6 +355,20 @@ body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--dark)}
   </div>
 
 </div>
+
+<!-- ── Principales Conclusiones ─────────────────────────── -->
+<div class="concl-divider"></div>
+<div class="concl-section">
+  <div class="concl-header">
+    <div class="concl-title">
+      <svg viewBox="0 0 24 24" fill="none" stroke="var(--green)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
+      Principales conclusiones
+      <span class="concl-subtitle">Campaña vs. comparativo</span>
+    </div>
+  </div>
+  <div class="concl-grid" id="conclusiones"></div>
+</div>
+
 </main>
 
 <script>
@@ -443,11 +483,101 @@ function animPerson(id, pct) {
   setTimeout(()=>requestAnimationFrame(step), 300);
 }
 
+// ─── Conclusiones ───────────────────────────
+function renderConclusiones() {
+  // Calcular deltas clave desde los datos
+  const genero = [{l:'Mujeres',c:56.1,k:54.8},{l:'Hombres',c:43.9,k:45.2}];
+  const kpis = { gasto_camp:47412, gasto_comp:53529, ticket_camp:45656, ticket_comp:50651, freq_camp:1.038, freq_comp:1.057 };
+  const dGasto  = ((kpis.gasto_camp  - kpis.gasto_comp)  / kpis.gasto_comp  * 100);
+  const dTicket = ((kpis.ticket_camp - kpis.ticket_comp) / kpis.ticket_comp * 100);
+  const dFreq   = ((kpis.freq_camp   - kpis.freq_comp)   / kpis.freq_comp   * 100);
+
+  // Segmentos más sobreindexados y subindexados
+  const topPos = ALL.filter(r=>r.d>0).slice(0,3).map(r=>`<strong>${r.l}</strong> (+${r.d} pp)`).join(', ');
+  const topNeg = ALL.filter(r=>r.d<0).slice(-3).reverse().map(r=>`<strong>${r.l}</strong> (${r.d} pp)`).join(', ');
+
+  // Zona dominante y GSE dominante
+  const zonaDom = [{l:'Norte',c:23,k:23.2},{l:'Sur',c:36.1,k:35.7},{l:'Poniente',c:31.9,k:32.3},{l:'Oriente',c:8.5,k:8.3}]
+    .sort((a,b)=>b.c-a.c)[0];
+  const gseDom  = GSE.sort((a,b)=>b.c-a.c)[0];
+
+  const cards = [
+    {
+      type: 'risk',
+      tag:  'Gasto & ticket',
+      tagIcon: '<path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/>',
+      text: `Clientes gastan <strong>${Math.abs(dGasto).toFixed(1)}% menos</strong> que el comparativo y su ticket es <strong>${Math.abs(dTicket).toFixed(1)}% inferior</strong>. Se orientan a productos de menor valor unitario.`,
+      metric: dGasto.toFixed(1) + '%',
+      metricType: 'neg',
+      metricLabel: 'diferencia gasto\nvs comparativo',
+    },
+    {
+      type: 'opp',
+      tag:  'Sobreindexados',
+      tagIcon: '<polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/>',
+      text: `Mayor afinidad en <strong>Clientes F</strong> (+2.0 pp), <strong>46–55 años</strong> (+1.7 pp) y <strong>Mujeres</strong> (+1.3 pp). Perfiles prioritarios para optimizar segmentación futura.`,
+      metric: '+2.0 pp',
+      metricType: 'pos',
+      metricLabel: 'mayor delta:\nClientes F',
+    },
+    {
+      type: 'risk',
+      tag:  'Subindexados',
+      tagIcon: '<polyline points="23 18 13.5 8.5 8.5 13.5 1 6"/><polyline points="17 18 23 18 23 12"/>',
+      text: `Segmento <strong>D</strong> (−1.8 pp), <strong>clientes nuevos</strong> (−1.5 pp) y <strong>18–25 años</strong> (−2.3 pp) están por debajo del comparativo. Baja penetración en perfiles de captación.`,
+      metric: '−2.3 pp',
+      metricType: 'neg',
+      metricLabel: 'mayor brecha:\n18–25 años',
+    },
+    {
+      type: 'opp',
+      tag:  'Zona geográfica',
+      tagIcon: '<path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/>',
+      text: `<strong>Sur</strong> lidera con ${zonaDom.c}% y sobreindexado (+0.4 pp). <strong>Oriente</strong> también positivo (+0.2 pp). <strong>Poniente</strong> y <strong>Norte</strong> levemente por debajo del comparativo.`,
+      metric: zonaDom.c + '%',
+      metricType: 'pos',
+      metricLabel: `concentración\nzona ${zonaDom.l}`,
+    },
+    {
+      type: 'neutral',
+      tag:  'Perfil etario',
+      tagIcon: '<path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/>',
+      text: `Cliente de <strong>mediana edad</strong>: tramos 36–45 y 46–55 sobreindexan. Jóvenes <strong>18–25</strong> claramente subrepresentados. Perfil más maduro que el universo general.`,
+      metric: '+1.7 pp',
+      metricType: 'pos',
+      metricLabel: 'sobreíndice\n46–55 años',
+    },
+    {
+      type: 'neutral',
+      tag:  'GSE & frecuencia',
+      tagIcon: '<line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/>',
+      text: `<strong>ABC1</strong> y <strong>C2</strong> sobreindexan pese a ser minorías. La frecuencia de compra es casi idéntica al comparativo (<strong>${dFreq.toFixed(1)}%</strong>): el menor gasto se explica por ticket, no por recurrencia.`,
+      metric: dFreq.toFixed(1) + '%',
+      metricType: 'neu',
+      metricLabel: 'diferencia frecuencia\nvs comparativo',
+    },
+  ];
+
+  document.getElementById('conclusiones').innerHTML = cards.map((c, i) => `
+    <div class="concl-card ${c.type}" style="animation-delay:${0.3 + i*0.08}s">
+      <div class="concl-tag ${c.type}">
+        <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">${c.tagIcon}</svg>
+        ${c.tag}
+      </div>
+      <div class="concl-text">${c.text}</div>
+      <div class="concl-metric">
+        <div class="cm-val ${c.metricType}">${c.metric}</div>
+        <div class="cm-label">${c.metricLabel.replace('\n','<br>')}</div>
+      </div>
+    </div>`).join('');
+}
+
 // ─── INIT ───────────────────────────────────
 renderBars('edad-bars', EDAD);
 renderBars('gse-bars',  GSE,  true);
 renderBars('tipo-bars', TIPO, true);
 renderDelta();
+renderConclusiones();
 setTimeout(animBars, 200);
 animPerson('crect-f', 0.561);
 animPerson('crect-m', 0.439);
