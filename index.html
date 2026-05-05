@@ -1,456 +1,275 @@
-<!DOCTYPE html>
-<html lang="es">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Perfil de Campaña · Zapatillas</title>
-<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600;700&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
-<style>
-:root {
-  --green:#00A651; --green-d:#007A3D; --green-l:#E6F7EE;
-  --red:#D93025; --red-l:#FDECEA;
-  --pink:#C94F8A; --pink-l:#FAE8F2;
-  --blue:#2E7BC4; --blue-l:#E6F0FA;
-  --bg:#F1F3F9; --white:#FFFFFF; --dark:#14161F;
-  --mid:#565A73; --faint:#8C90A8; --border:#E0E4F2;
-  --shadow:0 2px 18px rgba(20,22,31,0.07);
-  --r:14px; --rs:8px;
-}
-*{box-sizing:border-box;margin:0;padding:0}
-body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--dark)}
-
-/* ── Header ── */
-.hdr{background:var(--white);border-bottom:1px solid var(--border);padding:16px 32px;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:100}
-.hdr-l{display:flex;align-items:center;gap:14px}
-.logo{width:36px;height:36px;border-radius:10px;background:var(--green);display:flex;align-items:center;justify-content:center}
-.logo svg{width:20px;height:20px;fill:white}
-.htitle{font-size:16px;font-weight:700;letter-spacing:-.3px}
-.hsub{font-size:12px;color:var(--mid)}
-.badge{font-size:11px;font-weight:600;padding:4px 12px;border-radius:20px;background:var(--green-l);color:var(--green);letter-spacing:.5px;text-transform:uppercase}
-
-/* ── Layout ── */
-.main{padding:22px 32px;max-width:1140px;margin:0 auto}
-
-/* ── KPI cards ── */
-.kpi-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-bottom:20px}
-.kpi{background:var(--white);border-radius:var(--r);padding:20px 22px;box-shadow:var(--shadow);border:1px solid var(--border);animation:fadeUp .45s ease both}
-.kpi:nth-child(2){animation-delay:.07s}.kpi:nth-child(3){animation-delay:.14s}.kpi:nth-child(4){animation-delay:.21s}
-.klbl{font-size:11px;font-weight:500;color:var(--faint);text-transform:uppercase;letter-spacing:.6px;margin-bottom:8px}
-.kval{font-size:25px;font-weight:700;letter-spacing:-1px;line-height:1}
-.kcmp{font-size:12px;color:var(--mid);margin-top:8px;display:flex;align-items:center;gap:5px;flex-wrap:wrap}
-.chip{font-size:11px;font-weight:600;padding:2px 7px;border-radius:6px}
-.chip.dn{background:var(--red-l);color:var(--red)}
-.chip.up{background:var(--green-l);color:var(--green)}
-.kbar-bg{height:3px;background:#eaecf5;border-radius:3px;margin-top:14px;overflow:hidden}
-.kbar-fg{height:100%;background:var(--green);border-radius:3px;transition:width 1.3s cubic-bezier(.4,0,.2,1)}
-
-/* ── Cards ── */
-.row{display:grid;gap:18px;margin-bottom:18px}
-.r2{grid-template-columns:1fr 1fr}
-.r3{grid-template-columns:1fr 1fr 1fr}
-.card{background:var(--white);border-radius:var(--r);padding:22px 24px;box-shadow:var(--shadow);border:1px solid var(--border);animation:fadeUp .5s ease both}
-.ctitle{font-size:11px;font-weight:600;letter-spacing:.5px;text-transform:uppercase;color:var(--faint);margin-bottom:16px;display:flex;align-items:center;gap:8px}
-.ctitle::before{content:'';width:8px;height:8px;border-radius:2px;background:var(--green);display:inline-block;flex-shrink:0}
-.legend{display:flex;gap:14px;margin-bottom:12px;flex-wrap:wrap}
-.leg{display:flex;align-items:center;gap:5px;font-size:11px;color:var(--mid)}
-.ldot{width:10px;height:10px;border-radius:2px;flex-shrink:0}
-
-/* ── GENDER ── */
-.gender-grid{display:grid;grid-template-columns:1fr 1fr;height:100%}
-.gp{display:flex;flex-direction:column;align-items:center;padding:18px 16px;text-align:center}
-.gp:first-child{border-right:1px solid var(--border)}
-.g-icon-wrap{margin-bottom:16px;filter:drop-shadow(0 4px 12px rgba(0,0,0,.08))}
-.g-pct{font-size:46px;font-weight:700;letter-spacing:-2.5px;line-height:1;margin-bottom:4px}
-.g-pct.f{color:var(--pink)} .g-pct.m{color:var(--blue)}
-.g-name{font-size:13px;font-weight:600;color:var(--mid);margin-bottom:10px}
-.g-comp{font-size:12px;color:var(--mid);display:flex;align-items:center;gap:6px;flex-wrap:wrap;justify-content:center}
-.dpill{font-size:11px;font-weight:700;padding:2px 8px;border-radius:10px;font-family:'DM Mono',monospace}
-.dpill.pos{background:var(--green-l);color:var(--green-d)}
-.dpill.neg{background:var(--red-l);color:var(--red)}
-
-/* ── Dual bars ── */
-.bars{display:flex;flex-direction:column;gap:9px}
-.br{display:grid;align-items:center;gap:10px;grid-template-columns:80px 1fr 44px}
-.br.w70{grid-template-columns:70px 1fr 44px}
-.blbl{font-size:12px;font-weight:500;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-.btrack{height:24px;position:relative;border-radius:5px;background:#EEF1F9;cursor:default;transition:background .15s}
-.btrack:hover{background:#E5E8F5}
-.bcomp{position:absolute;left:0;top:2px;height:20px;border-radius:4px;background:#C0C8E8;transition:width 1.1s cubic-bezier(.4,0,.2,1)}
-.bcamp{position:absolute;left:0;top:0;height:24px;border-radius:5px;background:var(--green);opacity:.85;transition:width 1.1s cubic-bezier(.4,0,.2,1)}
-.bpct{font-size:12px;font-weight:600;font-family:'DM Mono',monospace}
-
-/* ── Map ── */
-.map-legend{display:flex;align-items:center;justify-content:space-between;margin-top:10px;flex-wrap:wrap;gap:8px}
-.ml-item{display:flex;align-items:center;gap:5px;font-size:11px;color:var(--mid)}
-.ml-swatch{width:16px;height:10px;border-radius:3px;flex-shrink:0}
-
-/* ── Delta chart ── */
-.dtabs{display:flex;gap:3px;background:#EEF1F9;padding:3px;border-radius:8px;margin-bottom:14px}
-.dtab{flex:1;padding:6px 8px;border:none;cursor:pointer;background:transparent;border-radius:6px;font-family:'DM Sans',sans-serif;font-size:12px;font-weight:500;color:var(--mid);transition:all .15s}
-.dtab.active{background:var(--white);color:var(--dark);font-weight:600;box-shadow:0 1px 5px rgba(0,0,0,.1)}
-.dscroll{max-height:290px;overflow-y:auto;padding-right:2px}
-.drow{display:grid;grid-template-columns:82px 1fr 42px;gap:8px;align-items:center;margin-bottom:8px}
-.dlbl{font-size:12px;font-weight:500;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-.dtrack{position:relative;height:26px}
-.daxis{position:absolute;left:50%;top:0;bottom:0;width:1px;background:#d5d9ea}
-.dbar{position:absolute;top:3px;height:20px;border-radius:4px;transition:width 1.1s cubic-bezier(.4,0,.2,1)}
-.dbar.pos{background:var(--green);left:50%}
-.dbar.neg{background:var(--red);right:50%}
-.dval{font-size:11px;font-weight:700;font-family:'DM Mono',monospace;white-space:nowrap}
-.dval.pos{color:var(--green-d)} .dval.neg{color:var(--red)}
-
-/* ── Tooltip ── */
-.tip{position:fixed;background:var(--dark);color:#fff;padding:9px 13px;border-radius:9px;font-size:12px;pointer-events:none;opacity:0;transition:opacity .12s;z-index:999;line-height:1.65;box-shadow:0 4px 20px rgba(0,0,0,.22)}
-
-/* ── Anim ── */
-@keyframes fadeUp{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:translateY(0)}}
-
-/* ── Responsive ── */
-@media(max-width:920px){.kpi-grid{grid-template-columns:1fr 1fr}.r2,.r3{grid-template-columns:1fr}.main{padding:16px}}
-@media(max-width:480px){.kpi-grid{grid-template-columns:1fr}}
-</style>
-</head>
-<body>
-
-<header class="hdr">
-  <div class="hdr-l">
-    <div class="logo">
-      <svg viewBox="0 0 24 24"><path d="M3 13h8V3H3v10zm0 8h8v-6H3v6zm10 0h8V11h-8v10zm0-18v6h8V3h-8z"/></svg>
-    </div>
-    <div>
-      <div class="htitle">Perfil de Campaña</div>
-      <div class="hsub">MKT Directo · Falabella</div>
-    </div>
-  </div>
-  <div class="badge">Zapatillas</div>
-</header>
-
-<div class="tip" id="tip"></div>
-
-<main class="main">
-
-<!-- KPIs -->
-<div class="kpi-grid">
-  <div class="kpi">
-    <div class="klbl">Clientes campaña</div>
-    <div class="kval" style="color:var(--green)">23.220</div>
-    <div class="kcmp">vs <b>77.504</b> comparativo</div>
-    <div class="kbar-bg"><div class="kbar-fg" style="width:0" data-w="23"></div></div>
-  </div>
-  <div class="kpi">
-    <div class="klbl">Gasto por cliente</div>
-    <div class="kval">$47.412</div>
-    <div class="kcmp"><span class="chip dn">−11.4%</span>vs comp $53.529</div>
-    <div class="kbar-bg"><div class="kbar-fg" style="width:0" data-w="89"></div></div>
-  </div>
-  <div class="kpi">
-    <div class="klbl">Frecuencia de compra</div>
-    <div class="kval">1.038</div>
-    <div class="kcmp"><span class="chip dn">−1.7%</span>vs comp 1.057</div>
-    <div class="kbar-bg"><div class="kbar-fg" style="width:0" data-w="98"></div></div>
-  </div>
-  <div class="kpi">
-    <div class="klbl">Ticket promedio</div>
-    <div class="kval">$45.656</div>
-    <div class="kcmp"><span class="chip dn">−9.9%</span>vs comp $50.651</div>
-    <div class="kbar-bg"><div class="kbar-fg" style="width:0" data-w="90"></div></div>
-  </div>
-</div>
-
-<!-- Género full width -->
-<div class="row" style="grid-template-columns:1fr;margin-bottom:18px">
-  <div class="card" style="animation-delay:.05s;padding-bottom:24px">
-    <div class="ctitle">Género</div>
-    <div class="gender-grid">
-
-      <!-- Mujeres -->
-      <div class="gp">
-        <div class="g-icon-wrap">
-          <svg width="100" height="150" viewBox="0 0 100 150" xmlns="http://www.w3.org/2000/svg">
-            <defs>
-              <clipPath id="clip-f">
-                <rect id="crect-f" x="0" y="150" width="100" height="0"/>
-              </clipPath>
-            </defs>
-            <!-- Background gray female icon -->
-            <g fill="#E0E4F2">
-              <circle cx="50" cy="23" r="19"/>
-              <path d="M31,45 Q40,42 50,42 Q60,42 69,45 L82,135 L18,135 Z"/>
-            </g>
-            <!-- Pink fill, clipped from bottom up -->
-            <g clip-path="url(#clip-f)" fill="#C94F8A">
-              <circle cx="50" cy="23" r="19"/>
-              <path d="M31,45 Q40,42 50,42 Q60,42 69,45 L82,135 L18,135 Z"/>
-            </g>
-          </svg>
-        </div>
-        <div class="g-pct f">56%</div>
-        <div class="g-name">Mujeres</div>
-        <div class="g-comp">Comp: 54.8%&nbsp;<span class="dpill pos">+1.3 pp</span></div>
-      </div>
-
-      <!-- Hombres -->
-      <div class="gp">
-        <div class="g-icon-wrap">
-          <svg width="100" height="150" viewBox="0 0 100 150" xmlns="http://www.w3.org/2000/svg">
-            <defs>
-              <clipPath id="clip-m">
-                <rect id="crect-m" x="0" y="150" width="100" height="0"/>
-              </clipPath>
-            </defs>
-            <!-- Background gray male icon -->
-            <g fill="#E0E4F2">
-              <circle cx="50" cy="20" r="18"/>
-              <rect x="30" y="41" width="40" height="46" rx="6"/>
-              <rect x="28" y="84" width="17" height="50" rx="5"/>
-              <rect x="55" y="84" width="17" height="50" rx="5"/>
-            </g>
-            <!-- Blue fill, clipped from bottom up -->
-            <g clip-path="url(#clip-m)" fill="#2E7BC4">
-              <circle cx="50" cy="20" r="18"/>
-              <rect x="30" y="41" width="40" height="46" rx="6"/>
-              <rect x="28" y="84" width="17" height="50" rx="5"/>
-              <rect x="55" y="84" width="17" height="50" rx="5"/>
-            </g>
-          </svg>
-        </div>
-        <div class="g-pct m">44%</div>
-        <div class="g-name">Hombres</div>
-        <div class="g-comp">Comp: 45.2%&nbsp;<span class="dpill neg">−1.3 pp</span></div>
-      </div>
-
-    </div>
-  </div>
-</div>
-
-<!-- Edad + Mapa -->
-<div class="row r2" style="align-items:start">
-
-  <!-- Edad -->
-  <div class="card" style="animation-delay:.1s">
-    <div class="ctitle">Rango etario</div>
-    <div class="legend">
-      <div class="leg"><div class="ldot" style="background:var(--green)"></div>Campaña</div>
-      <div class="leg"><div class="ldot" style="background:#C0C8E8"></div>Comparativo</div>
-    </div>
-    <div class="bars" id="edad-bars"></div>
-  </div>
-
-  <!-- Mapa Santiago -->
-  <div class="card" style="animation-delay:.12s">
-    <div class="ctitle">Zona geográfica · Santiago RM</div>
-
-    <svg viewBox="0 0 280 308" xmlns="http://www.w3.org/2000/svg" style="width:100%;display:block">
-      <defs>
-        <clipPath id="mclip"><rect x="0" y="0" width="280" height="308" rx="9"/></clipPath>
-      </defs>
-      <g clip-path="url(#mclip)">
-
-        <!-- Norte: delta −0.2 → warm salmon -->
-        <rect x="0" y="0" width="280" height="70" fill="#F8D0CC"/>
-        <!-- Poniente: delta −0.4 → stronger red -->
-        <rect x="0" y="70" width="196" height="130" fill="#F2A89F"/>
-        <!-- Oriente: delta +0.2 → light green -->
-        <rect x="196" y="70" width="84" height="130" fill="#B8DFC8"/>
-        <!-- Sur: delta +0.4 → medium green -->
-        <rect x="0" y="200" width="280" height="108" fill="#85C9A4"/>
-
-        <!-- Dividers -->
-        <line x1="0" y1="70" x2="280" y2="70" stroke="white" stroke-width="2.5"/>
-        <line x1="0" y1="200" x2="280" y2="200" stroke="white" stroke-width="2.5"/>
-        <line x1="196" y1="70" x2="196" y2="200" stroke="white" stroke-width="2.5"/>
-
-        <!-- NORTE (y 0-70, center y=35, center x=140) -->
-        <text x="140" y="21" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="10" font-weight="600" fill="#7B3530" letter-spacing="1.5">NORTE</text>
-        <text x="140" y="48" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="24" font-weight="700" fill="#7B3530">23%</text>
-        <text x="140" y="63" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="10" fill="#9E4840">Δ −0.2 pp</text>
-
-        <!-- PONIENTE (x 0-196, y 70-200, center x=98, center y=135) -->
-        <text x="98" y="112" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="10" font-weight="600" fill="#7B3530" letter-spacing="1.5">PONIENTE</text>
-        <text x="98" y="145" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="28" font-weight="700" fill="#7B3530">32%</text>
-        <text x="98" y="162" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="10" fill="#9E4840">Δ −0.4 pp</text>
-
-        <!-- ORIENTE (x 196-280, y 70-200, center x=238, width 84, center y=135) -->
-        <text x="238" y="108" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="9" font-weight="600" fill="#1A6641" letter-spacing="1">ORIENTE</text>
-        <text x="238" y="134" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="22" font-weight="700" fill="#1A6641">8%</text>
-        <text x="238" y="150" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="9" fill="#2A855A">Δ +0.2 pp</text>
-
-        <!-- SUR (y 200-308, center y=254, center x=140) -->
-        <text x="140" y="232" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="10" font-weight="600" fill="#1A6641" letter-spacing="1.5">SUR</text>
-        <text x="140" y="266" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="28" font-weight="700" fill="#1A6641">36%</text>
-        <text x="140" y="283" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="10" fill="#2A855A">Δ +0.4 pp</text>
-
-        <!-- Compass badge -->
-        <circle cx="256" cy="20" r="13" fill="white" opacity=".85"/>
-        <text x="256" y="25" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="12" font-weight="700" fill="#14161F">N</text>
-      </g>
-    </svg>
-
-    <div class="map-legend">
-      <div class="ml-item"><div class="ml-swatch" style="background:#F2A89F"></div>Subindexado vs comp</div>
-      <div class="ml-item" style="color:var(--faint);font-size:11px">Color = Δ campaña</div>
-      <div class="ml-item"><div class="ml-swatch" style="background:#85C9A4"></div>Sobreindexado vs comp</div>
-    </div>
-  </div>
-</div>
-
-<!-- GSE + Tipo + Delta -->
-<div class="row r3" style="align-items:start">
-
-  <!-- GSE -->
-  <div class="card" style="animation-delay:.18s">
-    <div class="ctitle">Nivel socioeconómico</div>
-    <div class="legend">
-      <div class="leg"><div class="ldot" style="background:var(--green)"></div>Campaña</div>
-      <div class="leg"><div class="ldot" style="background:#C0C8E8"></div>Comparativo</div>
-    </div>
-    <div class="bars" id="gse-bars"></div>
-  </div>
-
-  <!-- Tipo -->
-  <div class="card" style="animation-delay:.22s">
-    <div class="ctitle">Tipo de cliente</div>
-    <div class="legend">
-      <div class="leg"><div class="ldot" style="background:var(--green)"></div>Campaña</div>
-      <div class="leg"><div class="ldot" style="background:#C0C8E8"></div>Comparativo</div>
-    </div>
-    <div class="bars" id="tipo-bars"></div>
-  </div>
-
-  <!-- Delta -->
-  <div class="card" style="animation-delay:.26s">
-    <div class="ctitle">Diferencial vs comp (pp)</div>
-    <div class="dtabs">
-      <button class="dtab active" onclick="setF('all',this)">Todos</button>
-      <button class="dtab" onclick="setF('pos',this)">Sobres.</button>
-      <button class="dtab" onclick="setF('neg',this)">Subind.</button>
-    </div>
-    <div class="dscroll"><div id="delta-chart"></div></div>
-  </div>
-
-</div>
-</main>
-
 <script>
-// ─── DATA ───────────────────────────────────
-const EDAD = [
-  {l:'18–25',   c:6.5,  k:8.8 },
-  {l:'26–35',   c:25.9, k:27.5},
-  {l:'36–45',   c:32.3, k:30.9},
-  {l:'46–55',   c:22.0, k:20.3},
-  {l:'56 o más',c:13.3, k:12.5},
-];
-const GSE = [
-  {l:'ABC1',c:15.5,k:14.5},
-  {l:'C2',  c:12.1,k:11.5},
-  {l:'C3',  c:25.1,k:25.4},
-  {l:'D',   c:35.1,k:36.9},
-  {l:'E',   c:12.2,k:11.7},
-];
-const TIPO = [
-  {l:'Clientes F',   c:36.4,k:34.4},
-  {l:'Nuevos Fal.',  c:7.6, k:9.0 },
-];
-const ALL = [
-  {l:'Mujeres',c:56.1,k:54.8},{l:'Hombres',c:43.9,k:45.2},
-  ...EDAD, 
-  {l:'Norte',c:23.0,k:23.2},{l:'Sur',c:36.1,k:35.7},
-  {l:'Poniente',c:31.9,k:32.3},{l:'Oriente',c:8.5,k:8.3},
-  ...GSE, ...TIPO,
-].map(r=>({l:r.l, d:+(r.c-r.k).toFixed(1)})).sort((a,b)=>b.d-a.d);
+let DATA = {};
+let EDAD = [];
+let GSE = [];
+let TIPO = [];
+let ZONAS = [];
+let GENERO = [];
+let ALL = [];
+let curF = 'all';
 
-// ─── Tooltip ────────────────────────────────
 const tip = document.getElementById('tip');
+
+// ─── DATA LOADER ────────────────────────────
+async function loadData() {
+  const res = await fetch('./data.json');
+
+  if (!res.ok) {
+    throw new Error('No se pudo cargar data.json');
+  }
+
+  DATA = await res.json();
+
+  EDAD = DATA.edad || [];
+  GSE = DATA.gse || [];
+  TIPO = DATA.tipo || [];
+  ZONAS = DATA.zonas || [];
+  GENERO = DATA.genero || [];
+
+  ALL = [
+    ...GENERO,
+    ...EDAD,
+    ...ZONAS,
+    ...GSE,
+    ...TIPO
+  ]
+    .map(r => ({
+      l: r.l,
+      d: +(r.c - r.k).toFixed(1)
+    }))
+    .sort((a, b) => b.d - a.d);
+
+  updateHeader();
+  renderKPIs();
+  renderGender();
+  renderBars('edad-bars', EDAD);
+  renderBars('gse-bars', GSE, true);
+  renderBars('tipo-bars', TIPO, true);
+  renderDelta();
+
+  setTimeout(animBars, 200);
+
+  const mujer = GENERO.find(x => x.l.toLowerCase().includes('mujer'));
+  const hombre = GENERO.find(x => x.l.toLowerCase().includes('hombre'));
+
+  if (mujer) animPerson('crect-f', mujer.c / 100);
+  if (hombre) animPerson('crect-m', hombre.c / 100);
+}
+
+// ─── HEADER ─────────────────────────────────
+function updateHeader() {
+  if (DATA.titulo) {
+    document.querySelector('.htitle').textContent = DATA.titulo;
+  }
+
+  if (DATA.subtitulo) {
+    document.querySelector('.hsub').textContent = DATA.subtitulo;
+  }
+
+  if (DATA.comparativo) {
+    document.querySelector('.badge').textContent = DATA.comparativo;
+  }
+}
+
+// ─── KPIs ───────────────────────────────────
+function renderKPIs() {
+  if (!DATA.kpis) return;
+
+  const grid = document.querySelector('.kpi-grid');
+
+  grid.innerHTML = DATA.kpis.map(k => {
+    const chip = k.variacion
+      ? `<span class="chip ${k.tipo || 'up'}">${k.variacion}</span>`
+      : '';
+
+    return `
+      <div class="kpi">
+        <div class="klbl">${k.label}</div>
+        <div class="kval">${k.valor}</div>
+        <div class="kcmp">${chip}${k.detalle || ''}</div>
+        <div class="kbar-bg">
+          <div class="kbar-fg" style="width:0" data-w="${k.barra || 0}"></div>
+        </div>
+      </div>
+    `;
+  }).join('');
+}
+
+// ─── GÉNERO ─────────────────────────────────
+function renderGender() {
+  const mujer = GENERO.find(x => x.l.toLowerCase().includes('mujer'));
+  const hombre = GENERO.find(x => x.l.toLowerCase().includes('hombre'));
+
+  if (mujer) {
+    document.querySelector('.g-pct.f').textContent = `${mujer.c.toFixed(0)}%`;
+    document.querySelector('.gp:first-child .g-name').textContent = mujer.l;
+
+    const d = +(mujer.c - mujer.k).toFixed(1);
+    const pillClass = d >= 0 ? 'pos' : 'neg';
+    const sign = d >= 0 ? '+' : '';
+
+    document.querySelector('.gp:first-child .g-comp').innerHTML =
+      `Comp: ${mujer.k.toFixed(1)}%&nbsp;<span class="dpill ${pillClass}">${sign}${d} pp</span>`;
+  }
+
+  if (hombre) {
+    document.querySelector('.g-pct.m').textContent = `${hombre.c.toFixed(0)}%`;
+    document.querySelector('.gp:nth-child(2) .g-name').textContent = hombre.l;
+
+    const d = +(hombre.c - hombre.k).toFixed(1);
+    const pillClass = d >= 0 ? 'pos' : 'neg';
+    const sign = d >= 0 ? '+' : '';
+
+    document.querySelector('.gp:nth-child(2) .g-comp').innerHTML =
+      `Comp: ${hombre.k.toFixed(1)}%&nbsp;<span class="dpill ${pillClass}">${sign}${d} pp</span>`;
+  }
+}
+
+// ─── TOOLTIP ────────────────────────────────
 document.addEventListener('mousemove', e => {
-  if(tip.style.opacity==='1'){
-    tip.style.left=(e.clientX+14)+'px';
-    tip.style.top=(e.clientY-10)+'px';
+  if (tip.style.opacity === '1') {
+    tip.style.left = (e.clientX + 14) + 'px';
+    tip.style.top = (e.clientY - 10) + 'px';
   }
 });
-function showT(e,h){tip.innerHTML=h;tip.style.opacity='1';tip.style.left=(e.clientX+14)+'px';tip.style.top=(e.clientY-10)+'px'}
-function hideT(){tip.style.opacity='0'}
 
-// ─── Dual bars ──────────────────────────────
-function renderBars(id, rows, narrow=false) {
+function showT(e, h) {
+  tip.innerHTML = h;
+  tip.style.opacity = '1';
+  tip.style.left = (e.clientX + 14) + 'px';
+  tip.style.top = (e.clientY - 10) + 'px';
+}
+
+function hideT() {
+  tip.style.opacity = '0';
+}
+
+// ─── BARRAS DOBLES ──────────────────────────
+function renderBars(id, rows, narrow = false) {
   const el = document.getElementById(id);
-  const max = Math.max(...rows.flatMap(r=>[r.c,r.k]));
+  if (!el) return;
+
+  if (!rows.length) {
+    el.innerHTML = '';
+    return;
+  }
+
+  const max = Math.max(...rows.flatMap(r => [r.c, r.k]));
+
   el.innerHTML = rows.map(r => {
-    const cw=(r.c/max*100).toFixed(1), kw=(r.k/max*100).toFixed(1);
-    const d=(r.c-r.k).toFixed(1), s=d>0?'+':'';
-    return `<div class="br${narrow?' w70':''}">
-      <div class="blbl" title="${r.l}">${r.l}</div>
-      <div class="btrack"
-        onmouseenter="showT(event,'<b>${r.l}</b><br>Campaña: ${r.c.toFixed(1)}%<br>Comp: ${r.k.toFixed(1)}%<br>Δ: ${s}${d} pp')"
-        onmouseleave="hideT()">
-        <div class="bcomp" style="width:0%" data-w="${kw}"></div>
-        <div class="bcamp" style="width:0%" data-w="${cw}"></div>
+    const cw = (r.c / max * 100).toFixed(1);
+    const kw = (r.k / max * 100).toFixed(1);
+    const d = +(r.c - r.k).toFixed(1);
+    const s = d > 0 ? '+' : '';
+
+    return `
+      <div class="br${narrow ? ' w70' : ''}">
+        <div class="blbl" title="${r.l}">${r.l}</div>
+        <div class="btrack"
+          onmouseenter="showT(event,'<b>${r.l}</b><br>Campaña: ${r.c.toFixed(1)}%<br>Comp: ${r.k.toFixed(1)}%<br>Δ: ${s}${d} pp')"
+          onmouseleave="hideT()">
+          <div class="bcomp" style="width:0%" data-w="${kw}"></div>
+          <div class="bcamp" style="width:0%" data-w="${cw}"></div>
+        </div>
+        <div class="bpct">${r.c.toFixed(0)}%</div>
       </div>
-      <div class="bpct">${r.c.toFixed(0)}%</div>
-    </div>`;
+    `;
   }).join('');
 }
 
-// ─── Delta chart ────────────────────────────
-let curF = 'all';
+// ─── DELTA CHART ────────────────────────────
 function setF(f, btn) {
   curF = f;
-  document.querySelectorAll('.dtab').forEach(b=>b.classList.remove('active'));
+
+  document.querySelectorAll('.dtab').forEach(b => b.classList.remove('active'));
   btn.classList.add('active');
+
   renderDelta();
 }
+
 function renderDelta() {
-  const rows = ALL.filter(r => curF==='all'?true:curF==='pos'?r.d>0:r.d<0);
-  const mx = Math.max(...ALL.map(r=>Math.abs(r.d)));
-  document.getElementById('delta-chart').innerHTML = rows.map(r=>{
-    const pct = (Math.abs(r.d)/mx*44).toFixed(1);
-    const pos = r.d>=0, s=pos?'+':'';
-    return `<div class="drow">
-      <div class="dlbl" title="${r.l}">${r.l}</div>
-      <div class="dtrack">
-        <div class="daxis"></div>
-        <div class="dbar ${pos?'pos':'neg'}" style="width:0%" data-w="${pct}%"></div>
+  const el = document.getElementById('delta-chart');
+  if (!el) return;
+
+  const rows = ALL.filter(r =>
+    curF === 'all' ? true :
+    curF === 'pos' ? r.d > 0 :
+    r.d < 0
+  );
+
+  if (!rows.length) {
+    el.innerHTML = '';
+    return;
+  }
+
+  const mx = Math.max(...ALL.map(r => Math.abs(r.d))) || 1;
+
+  el.innerHTML = rows.map(r => {
+    const pct = (Math.abs(r.d) / mx * 44).toFixed(1);
+    const pos = r.d >= 0;
+    const s = pos ? '+' : '';
+
+    return `
+      <div class="drow">
+        <div class="dlbl" title="${r.l}">${r.l}</div>
+        <div class="dtrack">
+          <div class="daxis"></div>
+          <div class="dbar ${pos ? 'pos' : 'neg'}" style="width:0%" data-w="${pct}%"></div>
+        </div>
+        <div class="dval ${pos ? 'pos' : 'neg'}">${s}${r.d}</div>
       </div>
-      <div class="dval ${pos?'pos':'neg'}">${s}${r.d}</div>
-    </div>`;
+    `;
   }).join('');
-  requestAnimationFrame(()=>requestAnimationFrame(()=>{
-    document.querySelectorAll('.dbar[data-w]').forEach(e=>e.style.width=e.dataset.w);
+
+  requestAnimationFrame(() => requestAnimationFrame(() => {
+    document.querySelectorAll('.dbar[data-w]').forEach(e => {
+      e.style.width = e.dataset.w;
+    });
   }));
 }
 
-// ─── Animate bars ───────────────────────────
+// ─── ANIMACIONES ────────────────────────────
 function animBars() {
-  document.querySelectorAll('.kbar-fg[data-w]').forEach(e=>e.style.width=e.dataset.w+'%');
-  document.querySelectorAll('.bcomp[data-w],.bcamp[data-w]').forEach(e=>e.style.width=e.dataset.w+'%');
+  document.querySelectorAll('.kbar-fg[data-w]').forEach(e => {
+    e.style.width = e.dataset.w + '%';
+  });
+
+  document.querySelectorAll('.bcomp[data-w], .bcamp[data-w]').forEach(e => {
+    e.style.width = e.dataset.w + '%';
+  });
 }
 
-// ─── Person icon fill ───────────────────────
 function animPerson(id, pct) {
   const el = document.getElementById(id);
-  if(!el) return;
-  const H = 134; // bottom of icon content (female dress/male legs end near 134)
+  if (!el) return;
+
+  const H = 134;
   const endH = H * pct;
   const start = performance.now();
   const dur = 1300;
+
   function step(now) {
-    const t = Math.min((now-start)/dur, 1);
-    const e = t<.5?2*t*t:-1+(4-2*t)*t;
-    const h = endH*e;
-    el.setAttribute('y', (H-h).toFixed(2));
+    const t = Math.min((now - start) / dur, 1);
+    const e = t < .5 ? 2 * t * t : -1 + (4 - 2 * t) * t;
+    const h = endH * e;
+
+    el.setAttribute('y', (H - h).toFixed(2));
     el.setAttribute('height', h.toFixed(2));
-    if(t<1) requestAnimationFrame(step);
+
+    if (t < 1) requestAnimationFrame(step);
   }
-  setTimeout(()=>requestAnimationFrame(step), 300);
+
+  setTimeout(() => requestAnimationFrame(step), 300);
 }
 
 // ─── INIT ───────────────────────────────────
-renderBars('edad-bars', EDAD);
-renderBars('gse-bars',  GSE,  true);
-renderBars('tipo-bars', TIPO, true);
-renderDelta();
-setTimeout(animBars, 200);
-animPerson('crect-f', 0.561);
-animPerson('crect-m', 0.439);
+loadData().catch(err => {
+  console.error(err);
+  document.body.insertAdjacentHTML(
+    'afterbegin',
+    `<div style="background:#FDECEA;color:#D93025;padding:12px 24px;font-family:DM Sans,sans-serif">
+      Error cargando data.json. Revisa que exista en la misma carpeta que index.html.
+    </div>`
+  );
+});
 </script>
-</body>
-</html>
