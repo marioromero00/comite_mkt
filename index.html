@@ -102,8 +102,26 @@ body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--dark)}
 /* ── Tooltip ── */
 .tip{position:fixed;background:var(--dark);color:#fff;padding:9px 13px;border-radius:9px;font-size:12px;pointer-events:none;opacity:0;transition:opacity .12s;z-index:999;line-height:1.65;box-shadow:0 4px 20px rgba(0,0,0,.22)}
 
-/* ── Anim ── */
-@keyframes fadeUp{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:translateY(0)}}
+/* ── Venta diaria ── */
+.venta-section{margin-bottom:22px}
+.vkpi-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-bottom:16px}
+.vkpi{background:var(--white);border-radius:var(--r);padding:18px 20px;box-shadow:var(--shadow);border:1px solid var(--border);animation:fadeUp .4s ease both;border-left:4px solid transparent}
+.vkpi.total{border-left-color:var(--green)}
+.vkpi.fcom{border-left-color:#82D9A0}
+.vkpi.tienda{border-left-color:var(--green-d)}
+.vkpi:nth-child(2){animation-delay:.06s}.vkpi:nth-child(3){animation-delay:.12s}
+.vklbl{font-size:11px;font-weight:500;color:var(--faint);text-transform:uppercase;letter-spacing:.6px;margin-bottom:8px;display:flex;align-items:center;gap:7px}
+.vklbl-dot{width:8px;height:8px;border-radius:2px;flex-shrink:0}
+.vkval{font-size:26px;font-weight:700;letter-spacing:-1px;line-height:1}
+.vksub{font-size:12px;color:var(--mid);margin-top:6px}
+.chart-card{background:var(--white);border-radius:var(--r);padding:20px 24px 14px;box-shadow:var(--shadow);border:1px solid var(--border);animation:fadeUp .5s ease both;animation-delay:.1s}
+.chart-top{display:flex;align-items:center;justify-content:space-between;margin-bottom:16px;flex-wrap:wrap;gap:10px}
+.chart-title{font-size:11px;font-weight:600;letter-spacing:.5px;text-transform:uppercase;color:var(--faint);display:flex;align-items:center;gap:8px}
+.chart-title::before{content:'';width:8px;height:8px;border-radius:2px;background:var(--green);display:inline-block;flex-shrink:0}
+.chart-legend{display:flex;gap:14px}
+.cl-item{display:flex;align-items:center;gap:5px;font-size:11px;color:var(--mid)}
+.cl-dot{width:10px;height:10px;border-radius:2px;flex-shrink:0}
+{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:translateY(0)}}
 
 /* ── Conclusiones ── */
 .concl-section{margin-top:28px;margin-bottom:32px}
@@ -154,6 +172,37 @@ body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--dark)}
 <div class="tip" id="tip"></div>
 
 <main class="main">
+
+<!-- ── Venta diaria ──────────────────────────── -->
+<div class="venta-section">
+  <div class="vkpi-grid">
+    <div class="vkpi total">
+      <div class="vklbl">Venta total período</div>
+      <div class="vkval" style="color:var(--green)">$1.110 MM</div>
+      <div class="vksub">07 abr — 02 may 2026</div>
+    </div>
+    <div class="vkpi fcom">
+      <div class="vklbl"><div class="vklbl-dot" style="background:#82D9A0"></div>FCOM</div>
+      <div class="vkval">$569 MM</div>
+      <div class="vksub">51,2% del total</div>
+    </div>
+    <div class="vkpi tienda">
+      <div class="vklbl"><div class="vklbl-dot" style="background:var(--green-d)"></div>Tienda</div>
+      <div class="vkval">$542 MM</div>
+      <div class="vksub">48,8% del total</div>
+    </div>
+  </div>
+  <div class="chart-card">
+    <div class="chart-top">
+      <div class="chart-title">Venta diaria por canal</div>
+      <div class="chart-legend">
+        <div class="cl-item"><div class="cl-dot" style="background:var(--green-d)"></div>Tienda</div>
+        <div class="cl-item"><div class="cl-dot" style="background:#82D9A0"></div>FCOM</div>
+      </div>
+    </div>
+    <svg id="venta-chart" viewBox="0 0 900 185" xmlns="http://www.w3.org/2000/svg" style="width:100%;overflow:visible;display:block"></svg>
+  </div>
+</div>
 
 <!-- KPIs -->
 <div class="kpi-grid">
@@ -483,6 +532,113 @@ function animPerson(id, pct) {
   setTimeout(()=>requestAnimationFrame(step), 300);
 }
 
+// ─── Venta diaria chart ─────────────────────
+const VENTA = [
+  {f:'7 abr', fcom:15874636, tienda:18233948},
+  {f:'8 abr', fcom:19466359, tienda:21209240},
+  {f:'9 abr', fcom:22575525, tienda:19273609},
+  {f:'10 abr',fcom:18183266, tienda:23033860},
+  {f:'11 abr',fcom:15413912, tienda:33421863},
+  {f:'12 abr',fcom:22133017, tienda:27127533},
+  {f:'13 abr',fcom:17764445, tienda:17554723},
+  {f:'14 abr',fcom:17232700, tienda:16033455},
+  {f:'15 abr',fcom:19600699, tienda:17867592},
+  {f:'16 abr',fcom:18733763, tienda:16493974},
+  {f:'17 abr',fcom:18625164, tienda:22239430},
+  {f:'18 abr',fcom:20345738, tienda:35034752},
+  {f:'19 abr',fcom:22645527, tienda:25109002},
+  {f:'20 abr',fcom:19491003, tienda:15534475},
+  {f:'21 abr',fcom:20645197, tienda:14512002},
+  {f:'22 abr',fcom:22244246, tienda:14453724},
+  {f:'23 abr',fcom:22654129, tienda:12885965},
+  {f:'24 abr',fcom:16997977, tienda:19904469},
+  {f:'25 abr',fcom:13130755, tienda:29546876},
+  {f:'26 abr',fcom:16873795, tienda:21526880},
+  {f:'27 abr',fcom:15387733, tienda:13820705},
+  {f:'28 abr',fcom:26585459, tienda:13762371},
+  {f:'29 abr',fcom:38628751, tienda:19632343},
+  {f:'30 abr',fcom:31318336, tienda:25217746},
+  {f:'1 may', fcom:37612407, tienda:0        },
+  {f:'2 may', fcom:38380928, tienda:48269992 },
+];
+
+function renderVentaChart() {
+  const data = VENTA;
+  const W=900, H=185, pL=56, pR=14, pT=14, pB=38;
+  const cW=W-pL-pR, cH=H-pT-pB;
+  const yMax = 100000000; // 100 MM
+
+  const xP = i => pL + (i/(data.length-1))*cW;
+  const yP = v => pT + cH - (v/yMax)*cH;
+
+  // Area paths
+  const bL = `${pL},${pT+cH}`, bR = `${pL+cW},${pT+cH}`;
+  const tiPts  = data.map((d,i) => `${xP(i).toFixed(1)},${yP(d.tienda).toFixed(1)}`);
+  const totPts = data.map((d,i) => `${xP(i).toFixed(1)},${yP(d.fcom+d.tienda).toFixed(1)}`);
+  const fcomPts = [...totPts, ...[...tiPts].reverse()].join(' ');
+
+  // Grid lines + y labels
+  const grids = [25,50,75,100].map(mm => {
+    const y = yP(mm*1e6).toFixed(1);
+    return `<line x1="${pL}" y1="${y}" x2="${pL+cW}" y2="${y}" stroke="#eef1f9" stroke-width="1"/>
+      <text x="${pL-7}" y="${+y+4}" text-anchor="end" font-family="DM Sans,sans-serif" font-size="10" fill="#9096b0">${mm} MM</text>`;
+  }).join('');
+
+  // X labels (every 4 days + last)
+  const xLabels = data.map((d,i) => {
+    if (i%4!==0 && i!==data.length-1) return '';
+    return `<text x="${xP(i).toFixed(1)}" y="${pT+cH+18}" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="10" fill="#9096b0">${d.f}</text>`;
+  }).join('');
+
+  // Smooth polyline for top line of each series
+  const smoothLine = pts => pts.map((p,i,a) => {
+    if(i===0) return `M ${p}`;
+    const [x0,y0]=a[i-1].split(',').map(Number), [x1,y1]=p.split(',').map(Number);
+    const dx=(x1-x0)*0.4;
+    return `C ${x0+dx},${y0} ${x1-dx},${y1} ${x1},${y1}`;
+  }).join(' ');
+
+  const svg = document.getElementById('venta-chart');
+  svg.innerHTML = `
+    <defs>
+      <linearGradient id="gTi" x1="0" y1="0" x2="0" y2="1">
+        <stop offset="0%" stop-color="#00783C" stop-opacity=".92"/>
+        <stop offset="100%" stop-color="#00783C" stop-opacity=".65"/>
+      </linearGradient>
+      <linearGradient id="gFc" x1="0" y1="0" x2="0" y2="1">
+        <stop offset="0%" stop-color="#82D9A0" stop-opacity=".88"/>
+        <stop offset="100%" stop-color="#82D9A0" stop-opacity=".45"/>
+      </linearGradient>
+    </defs>
+    ${grids}
+    <polygon points="${[bL,...tiPts,bR].join(' ')}" fill="url(#gTi)"/>
+    <polygon points="${fcomPts}" fill="url(#gFc)"/>
+    <path d="${smoothLine(totPts)}" fill="none" stroke="#5CB87A" stroke-width="1.5" opacity=".6"/>
+    <path d="${smoothLine(tiPts)}"  fill="none" stroke="#005028" stroke-width="1.2" opacity=".5"/>
+    ${xLabels}
+    <line id="vc-vline" x1="0" y1="${pT}" x2="0" y2="${pT+cH}" stroke="#14161F" stroke-width="1"
+      stroke-dasharray="3,2" opacity="0" pointer-events="none"/>
+    <rect x="${pL}" y="${pT}" width="${cW}" height="${cH}" fill="transparent" id="vc-overlay"/>
+  `;
+
+  // Store chart params for hover
+  svg._vc = { data, xP, yP, pT, cH, pL, cW };
+
+  svg.getElementById('vc-overlay').addEventListener('mousemove', evt => {
+    const r = svg.getBoundingClientRect();
+    const svgX = (evt.clientX - r.left) * (900 / r.width);
+    const i = Math.max(0, Math.min(data.length-1, Math.round((svgX-pL)/cW*(data.length-1))));
+    const d = data[i], x = xP(i).toFixed(1);
+    const vl = svg.getElementById('vc-vline');
+    vl.setAttribute('x1',x); vl.setAttribute('x2',x); vl.setAttribute('opacity','0.4');
+    const fmt = v => v > 0 ? '$'+(v/1e6).toFixed(1)+' MM' : '—';
+    showT(evt, `<b>${d.f}</b><br>Total: <b>${fmt(d.fcom+d.tienda)}</b><br><span style="color:#82D9A0">■</span> FCOM: ${fmt(d.fcom)}<br><span style="color:#007A3D">■</span> Tienda: ${fmt(d.tienda)}`);
+  });
+  svg.getElementById('vc-overlay').addEventListener('mouseleave', () => {
+    svg.getElementById('vc-vline').setAttribute('opacity','0'); hideT();
+  });
+}
+
 // ─── Conclusiones ───────────────────────────
 function renderConclusiones() {
   // Calcular deltas clave desde los datos
@@ -573,6 +729,7 @@ function renderConclusiones() {
 }
 
 // ─── INIT ───────────────────────────────────
+renderVentaChart();
 renderBars('edad-bars', EDAD);
 renderBars('gse-bars',  GSE,  true);
 renderBars('tipo-bars', TIPO, true);
