@@ -1,0 +1,155 @@
+{
+  "meta": {
+    "campana": "Cocina",
+    "periodo": "05 may — 31 may 2026"
+  },
+  "totales": {
+    "clientes": 22713,
+    "venta_total": 879282193,
+    "ticket_promedio": 35986,
+    "clientes_f": 8594
+  },
+  "clientes_nuevos": {
+    "falabella": {
+      "n": 1531,
+      "pct": 6.7
+    },
+    "j12_completa": {
+      "n": 22713,
+      "pct": 100.0
+    },
+    "j1201": {
+      "n": 22713,
+      "pct": 100.0
+    },
+    "j1204": {
+      "n": 22713,
+      "pct": 100.0
+    }
+  },
+  "genero": {
+    "mujeres_pct": 64.5,
+    "hombres_pct": 35.5
+  },
+  "rango_etario": [
+    {
+      "rango": "18-25",
+      "clientes": 1051,
+      "pct": 4.7
+    },
+    {
+      "rango": "26-35",
+      "clientes": 4488,
+      "pct": 20.1
+    },
+    {
+      "rango": "36-45",
+      "clientes": 5549,
+      "pct": 24.9
+    },
+    {
+      "rango": "46-55",
+      "clientes": 4792,
+      "pct": 21.5
+    },
+    {
+      "rango": "56+",
+      "clientes": 6416,
+      "pct": 28.8
+    }
+  ],
+  "clientes_por_clase": [
+    {
+      "clase_id": "J150104",
+      "clase_desc": "SARTENES",
+      "clientes": 6713,
+      "pct": 29.6
+    },
+    {
+      "clase_id": "J150203",
+      "clase_desc": "TE Y CAFÉ",
+      "clientes": 5503,
+      "pct": 24.2
+    },
+    {
+      "clase_id": "J110901",
+      "clase_desc": "ELECT.MENORES",
+      "clientes": 4215,
+      "pct": 18.6
+    },
+    {
+      "clase_id": "J150101",
+      "clase_desc": "BATERIAS",
+      "clientes": 1581,
+      "pct": 7.0
+    },
+    {
+      "clase_id": "J150102",
+      "clase_desc": "OLLAS REGULARES",
+      "clientes": 1378,
+      "pct": 6.1
+    },
+    {
+      "clase_id": "J150105",
+      "clase_desc": "INFUSIONES Y TERMOS",
+      "clientes": 1263,
+      "pct": 5.6
+    },
+    {
+      "clase_id": "J150103",
+      "clase_desc": "OLLAS ESPECIALES",
+      "clientes": 1120,
+      "pct": 4.9
+    },
+    {
+      "clase_id": "J150202",
+      "clase_desc": "VAJILLA GRANEL",
+      "clientes": 974,
+      "pct": 4.3
+    },
+    {
+      "clase_id": "J150206",
+      "clase_desc": "SERVIR",
+      "clientes": 347,
+      "pct": 1.5
+    },
+    {
+      "clase_id": "J150205",
+      "clase_desc": "VIDRIO",
+      "clientes": 111,
+      "pct": 0.5
+    },
+    {
+      "clase_id": "J150106",
+      "clase_desc": "CONTENEDORES",
+      "clientes": 61,
+      "pct": 0.3
+    },
+    {
+      "clase_id": "J150114",
+      "clase_desc": "TEXTIL",
+      "clientes": 1,
+      "pct": 0.0
+    }
+  ],
+  "clientes_por_sublinea": [
+    {
+      "sublinea_id": "J1501",
+      "sublinea_desc": "COCINA",
+      "clientes": 11445,
+      "pct": 50.4
+    },
+    {
+      "sublinea_id": "J1502",
+      "sublinea_desc": "COMEDOR",
+      "clientes": 6766,
+      "pct": 29.8
+    },
+    {
+      "sublinea_id": "J1109",
+      "sublinea_desc": "ELECTRODOMESTICOS",
+      "clientes": 4215,
+      "pct": 18.6
+    }
+  ]
+}
