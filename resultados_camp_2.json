@@ -1,0 +1,170 @@
+{
+  "meta": {
+    "campana": "Textiles",
+    "periodo": "19 may — 31 may 2026"
+  },
+  "totales": {
+    "clientes": 804,
+    "venta_total": 60085635,
+    "ticket_promedio": 66688,
+    "clientes_f": 494
+  },
+  "clientes_nuevos": {
+    "campana": {
+      "n": 742,
+      "pct": 92.3,
+      "label": "Nuevos en campaña"
+    },
+    "sub_J1201": {
+      "n": 598,
+      "pct": 91.7,
+      "label": "ROPA DE CAMA"
+    },
+    "sub_J1204": {
+      "n": 179,
+      "pct": 95.2,
+      "label": "COJINES DECORATIVOS"
+    }
+  },
+  "genero": {
+    "mujeres_pct": 77.8,
+    "hombres_pct": 22.2
+  },
+  "rango_etario": [
+    {
+      "rango": "18-25",
+      "clientes": 18,
+      "pct": 2.3
+    },
+    {
+      "rango": "26-35",
+      "clientes": 132,
+      "pct": 16.6
+    },
+    {
+      "rango": "36-45",
+      "clientes": 204,
+      "pct": 25.6
+    },
+    {
+      "rango": "46-55",
+      "clientes": 219,
+      "pct": 27.5
+    },
+    {
+      "rango": "56+",
+      "clientes": 224,
+      "pct": 28.1
+    }
+  ],
+  "clientes_por_clase": [
+    {
+      "clase_id": "J120108",
+      "clase_desc": "FUNDA PLUMON",
+      "clientes": 451,
+      "pct": 56.1
+    },
+    {
+      "clase_id": "J120107",
+      "clase_desc": "ACCESORIOS DECORATIVOS",
+      "clientes": 200,
+      "pct": 24.9
+    },
+    {
+      "clase_id": "J120401",
+      "clase_desc": "COJINES CON RELLENO",
+      "clientes": 174,
+      "pct": 21.6
+    },
+    {
+      "clase_id": "J120402",
+      "clase_desc": "FUNDA DE COJIN",
+      "clientes": 19,
+      "pct": 2.4
+    },
+    {
+      "clase_id": "J120105",
+      "clase_desc": "CUBRECAMAS",
+      "clientes": 16,
+      "pct": 2.0
+    },
+    {
+      "clase_id": "J120101",
+      "clase_desc": "SABANAS",
+      "clientes": 7,
+      "pct": 0.9
+    }
+  ],
+  "clientes_por_sublinea": [
+    {
+      "sublinea_id": "J1201",
+      "sublinea_desc": "ROPA DE CAMA",
+      "clientes": 652,
+      "pct": 81.1,
+      "clientes_nuevos": 598,
+      "pct_nuevos": 91.7
+    },
+    {
+      "sublinea_id": "J1204",
+      "sublinea_desc": "COJINES DECORATIVOS",
+      "clientes": 188,
+      "pct": 23.4,
+      "clientes_nuevos": 179,
+      "pct_nuevos": 95.2
+    }
+  ],
+  "venta_diaria": [
+    {
+      "fecha": "2026-05-19",
+      "venta": 9004554
+    },
+    {
+      "fecha": "2026-05-20",
+      "venta": 6222640
+    },
+    {
+      "fecha": "2026-05-21",
+      "venta": 5168336
+    },
+    {
+      "fecha": "2026-05-22",
+      "venta": 5463648
+    },
+    {
+      "fecha": "2026-05-23",
+      "venta": 5311661
+    },
+    {
+      "fecha": "2026-05-24",
+      "venta": 4807940
+    },
+    {
+      "fecha": "2026-05-25",
+      "venta": 3468001
+    },
+    {
+      "fecha": "2026-05-26",
+      "venta": 3031662
+    },
+    {
+      "fecha": "2026-05-27",
+      "venta": 2253322
+    },
+    {
+      "fecha": "2026-05-28",
+      "venta": 2981511
+    },
+    {
+      "fecha": "2026-05-29",
+      "venta": 4029053
+    },
+    {
+      "fecha": "2026-05-30",
+      "venta": 3946992
+    },
+    {
+      "fecha": "2026-05-31",
+      "venta": 4396315
+    }
+  ]
+}
