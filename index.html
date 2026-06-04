@@ -131,35 +131,63 @@
       margin-bottom: 0.65rem;
     }
 
-    .gender-f { background: #00a859; }
+    .gender-f { background: #f472b6; }
     .gender-m { background: #38bdf8; }
 
-    .gender-legend { display: flex; gap: 1.25rem; font-size: 0.8rem; }
+    .gender-legend { display: flex; gap: 1.25rem; font-size: 0.85rem; align-items: center; }
 
-    .legend-dot {
-      display: inline-block;
-      width: 10px; height: 10px;
-      border-radius: 50%;
-      margin-right: 0.35rem;
+    .gender-symbol {
+      font-size: 1.1rem;
+      font-weight: 700;
+      margin-right: 0.25rem;
+      line-height: 1;
       vertical-align: middle;
     }
 
-    /* ── Clientes nuevos ────────────────────────────── */
-    .nuevos-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
-      gap: 0.75rem;
-    }
-
-    .nuevo-item {
-      background: var(--accent-dim);
+    /* ── Clientes nuevos accordion ──────────────────── */
+    .accordion-item {
+      border: 1px solid var(--border);
       border-radius: 8px;
-      padding: 0.75rem 1rem;
+      overflow: hidden;
+      margin-bottom: 0.5rem;
     }
 
-    .nuevo-val { font-size: 1.2rem; font-weight: 700; color: #00875a; }
-    .nuevo-pct { font-size: 0.75rem; color: var(--muted); }
-    .nuevo-lbl { font-size: 0.7rem; color: var(--muted); margin-top: 0.2rem; text-transform: uppercase; letter-spacing: 0.04em; }
+    .accordion-trigger {
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0.6rem 0.9rem;
+      background: var(--accent-dim);
+      border: none;
+      cursor: pointer;
+      font-size: 0.8rem;
+      font-weight: 600;
+      color: #00875a;
+      text-align: left;
+    }
+
+    .accordion-trigger:hover { background: #d4f0e3; }
+
+    .accordion-arrow {
+      font-size: 0.7rem;
+      transition: transform 0.2s;
+      color: var(--muted);
+    }
+
+    .accordion-trigger.open .accordion-arrow { transform: rotate(180deg); }
+
+    .accordion-body {
+      display: none;
+      padding: 0.65rem 0.9rem;
+      background: var(--surface);
+    }
+
+    .accordion-body.open { display: block; }
+
+    .nuevo-val { font-size: 1.3rem; font-weight: 700; color: #00875a; }
+    .nuevo-pct { font-size: 0.78rem; color: var(--muted); margin-top: 0.1rem; }
+    .nuevo-lbl { font-size: 0.68rem; color: var(--muted); text-transform: uppercase; letter-spacing: 0.04em; }
 
     /* ── Status ─────────────────────────────────────── */
     .status { text-align: center; padding: 4rem; color: var(--muted); font-size: 0.875rem; }
@@ -208,11 +236,16 @@
       sublinea: `ch-sub-${idx}`
     };
 
-    const nuevosHtml = Object.entries(clientes_nuevos).map(([k, v]) => `
-      <div class="nuevo-item">
-        <div class="nuevo-val">${fmt.num(v.n)}</div>
-        <div class="nuevo-pct">${v.pct}%</div>
-        <div class="nuevo-lbl">${v.label ?? k}</div>
+    const nuevosHtml = Object.entries(clientes_nuevos).map(([k, v], i) => `
+      <div class="accordion-item">
+        <button class="accordion-trigger" onclick="toggleAccordion(this)">
+          <span>${v.label ?? k}</span>
+          <span class="accordion-arrow">▼</span>
+        </button>
+        <div class="accordion-body">
+          <div class="nuevo-val">${fmt.num(v.n)}</div>
+          <div class="nuevo-pct">${v.pct}% del total</div>
+        </div>
       </div>`).join("");
 
     const page = document.createElement("div");
@@ -251,14 +284,14 @@
             <div class="gender-m" style="width:${genero.hombres_pct ?? 50}%"></div>
           </div>
           <div class="gender-legend">
-            <span><span class="legend-dot" style="background:#00a859"></span>Mujeres ${genero.mujeres_pct}%</span>
-            <span><span class="legend-dot" style="background:#38bdf8"></span>Hombres ${genero.hombres_pct}%</span>
+            <span><span class="gender-symbol" style="color:#f472b6">♀</span>Mujeres ${genero.mujeres_pct}%</span>
+            <span><span class="gender-symbol" style="color:#38bdf8">♂</span>Hombres ${genero.hombres_pct}%</span>
           </div>
         </div>
 
         <div class="card">
           <div class="card-title">Clientes Nuevos</div>
-          <div class="nuevos-grid">${nuevosHtml}</div>
+          <div>${nuevosHtml}</div>
         </div>
       </div>
 
@@ -325,6 +358,13 @@
         }
       });
     });
+  }
+
+  function toggleAccordion(btn) {
+    const body = btn.nextElementSibling;
+    const isOpen = body.classList.contains("open");
+    btn.classList.toggle("open", !isOpen);
+    body.classList.toggle("open", !isOpen);
   }
 
   function switchTab(idx) {
