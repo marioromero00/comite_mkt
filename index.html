@@ -262,7 +262,14 @@
   const fmt = {
     num: n => Number(n).toLocaleString("es-CL"),
     clp: n => "$" + Number(n).toLocaleString("es-CL"),
+    clpM: n => "$" + (Number(n) / 1_000_000).toFixed(1) + "M",
   };
+
+  const MESES = ["ene","feb","mar","abr","may","jun","jul","ago","sep","oct","nov","dic"];
+  function fmtFecha(iso) {
+    const d = new Date(iso + "T00:00:00");
+    return `${d.getDate()} ${MESES[d.getMonth()]}`;
+  }
 
   const CHART_COLOR = "#00a859";
 
@@ -278,12 +285,14 @@
     const {
       meta = {}, totales = {}, clientes_nuevos = {},
       genero = {}, rango_etario = [],
-      clientes_por_clase = [], clientes_por_sublinea = []
+      clientes_por_clase = [], clientes_por_sublinea = [],
+      venta_diaria = []
     } = data;
 
     const pageId = `page-${idx}`;
     const ids = {
-      etario: `ch-etario-${idx}`
+      etario:  `ch-etario-${idx}`,
+      diaria:  `ch-diaria-${idx}`,
     };
 
     const nuevosHtml = Object.entries(clientes_nuevos).map(([k, v], i) => `
@@ -323,6 +332,13 @@
         <div class="kpi">
           <div class="kpi-value">${fmt.num(totales.clientes_f)}</div>
           <div class="kpi-label">Clientes F</div>
+        </div>
+      </div>
+
+      <div class="row-full">
+        <div class="card">
+          <div class="card-title">Venta por Día</div>
+          <canvas id="${ids.diaria}" height="110"></canvas>
         </div>
       </div>
 
@@ -392,6 +408,39 @@
     requestAnimationFrame(() => {
       const tickStyle = { color: "#64748b", font: { size: 11 } };
       const gridColor = "#e2e8f0";
+
+      if (venta_diaria.length) {
+        makeChart(ids.diaria, "line", {
+          labels: venta_diaria.map(d => fmtFecha(d.fecha)),
+          datasets: [{
+            data: venta_diaria.map(d => d.venta),
+            borderColor: CHART_COLOR,
+            backgroundColor: "rgba(0,168,89,0.10)",
+            fill: true,
+            tension: 0.35,
+            pointRadius: 3,
+            pointBackgroundColor: "#fff",
+            pointBorderColor: CHART_COLOR,
+            pointBorderWidth: 1.5,
+            pointHoverRadius: 5,
+          }]
+        }, {
+          plugins: {
+            legend: { display: false },
+            tooltip: { callbacks: { label: ctx => " " + fmt.clp(ctx.raw) } }
+          },
+          scales: {
+            x: {
+              ticks: { ...tickStyle, maxRotation: 30, autoSkip: true, maxTicksLimit: 12 },
+              grid: { color: gridColor }
+            },
+            y: {
+              ticks: { ...tickStyle, callback: v => fmt.clpM(v) },
+              grid: { color: gridColor }
+            }
+          }
+        });
+      }
 
       makeChart(ids.etario, "bar", {
         labels: rango_etario.map(r => r.rango),
