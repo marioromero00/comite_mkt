@@ -189,6 +189,59 @@
     .nuevo-pct { font-size: 0.78rem; color: var(--muted); margin-top: 0.1rem; }
     .nuevo-lbl { font-size: 0.68rem; color: var(--muted); text-transform: uppercase; letter-spacing: 0.04em; }
 
+    /* ── Group list (clase / sublinea) ──────────────── */
+    .group-accordion {
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      overflow: hidden;
+    }
+
+    .group-trigger {
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0.7rem 1rem;
+      background: #f8fafc;
+      border: none;
+      cursor: pointer;
+      font-size: 0.82rem;
+      font-weight: 600;
+      color: var(--text);
+      text-align: left;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .group-trigger:hover { background: #f1f5f9; }
+    .group-trigger.open .accordion-arrow { transform: rotate(180deg); }
+
+    .group-body {
+      display: none;
+      background: var(--surface);
+    }
+
+    .group-body.open { display: block; }
+
+    .group-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0.55rem 1rem;
+      font-size: 0.82rem;
+      border-bottom: 1px solid #f1f5f9;
+    }
+
+    .group-row:last-child { border-bottom: none; }
+
+    .group-row-label { color: var(--text); }
+
+    .group-row-value {
+      font-weight: 600;
+      color: #00875a;
+      white-space: nowrap;
+      margin-left: 1rem;
+    }
+
     /* ── Status ─────────────────────────────────────── */
     .status { text-align: center; padding: 4rem; color: var(--muted); font-size: 0.875rem; }
     .error  { color: #f87171; }
@@ -212,7 +265,6 @@
   };
 
   const CHART_COLOR = "#00a859";
-  const PALETTE = ["#00a859", "#007a3d", "#34d399", "#38bdf8", "#f59e0b", "#f87171"];
 
   let chartInstances = [];
 
@@ -231,9 +283,7 @@
 
     const pageId = `page-${idx}`;
     const ids = {
-      etario:   `ch-etario-${idx}`,
-      clase:    `ch-clase-${idx}`,
-      sublinea: `ch-sub-${idx}`
+      etario: `ch-etario-${idx}`
     };
 
     const nuevosHtml = Object.entries(clientes_nuevos).map(([k, v], i) => `
@@ -302,14 +352,38 @@
         </div>
         <div class="card">
           <div class="card-title">Por Sublínea</div>
-          <canvas id="${ids.sublinea}" height="180"></canvas>
+          <div class="group-accordion">
+            <button class="group-trigger" onclick="toggleAccordion(this)">
+              <span>${clientes_por_sublinea.length} sublíneas</span>
+              <span class="accordion-arrow">▼</span>
+            </button>
+            <div class="group-body">
+              ${clientes_por_sublinea.map(r => `
+                <div class="group-row">
+                  <span class="group-row-label">${r.sublinea_desc}</span>
+                  <span class="group-row-value">${fmt.num(r.clientes)}</span>
+                </div>`).join("")}
+            </div>
+          </div>
         </div>
       </div>
 
       <div class="row-full">
         <div class="card">
           <div class="card-title">Clientes por Clase</div>
-          <canvas id="${ids.clase}" height="240"></canvas>
+          <div class="group-accordion">
+            <button class="group-trigger" onclick="toggleAccordion(this)">
+              <span>${clientes_por_clase.length} clases</span>
+              <span class="accordion-arrow">▼</span>
+            </button>
+            <div class="group-body">
+              ${clientes_por_clase.map(r => `
+                <div class="group-row">
+                  <span class="group-row-label">${r.clase_desc}</span>
+                  <span class="group-row-value">${fmt.num(r.clientes)}</span>
+                </div>`).join("")}
+            </div>
+          </div>
         </div>
       </div>`;
 
@@ -331,32 +405,6 @@
         }
       });
 
-      makeChart(ids.sublinea, "doughnut", {
-        labels: clientes_por_sublinea.map(r => r.sublinea_desc),
-        datasets: [{ data: clientes_por_sublinea.map(r => r.clientes),
-          backgroundColor: PALETTE, borderWidth: 0, hoverOffset: 6 }]
-      }, {
-        plugins: {
-          legend: { display: true, position: "bottom",
-            labels: { color: "#475569", font: { size: 11 }, boxWidth: 12, padding: 14 } },
-          tooltip: { callbacks: { label: ctx => ` ${ctx.label}: ${fmt.num(ctx.raw)}` } }
-        },
-        cutout: "60%"
-      });
-
-      makeChart(ids.clase, "bar", {
-        labels: clientes_por_clase.map(r => r.clase_desc),
-        datasets: [{ data: clientes_por_clase.map(r => r.clientes),
-          backgroundColor: "#00a859", borderRadius: 4 }]
-      }, {
-        indexAxis: "y",
-        plugins: { legend: { display: false },
-          tooltip: { callbacks: { label: ctx => ` ${fmt.num(ctx.raw)} clientes` } } },
-        scales: {
-          x: { ticks: tickStyle, grid: { color: gridColor } },
-          y: { ticks: tickStyle, grid: { color: gridColor } }
-        }
-      });
     });
   }
 
