@@ -212,7 +212,7 @@
       <div class="nuevo-item">
         <div class="nuevo-val">${fmt.num(v.n)}</div>
         <div class="nuevo-pct">${v.pct}%</div>
-        <div class="nuevo-lbl">${k}</div>
+        <div class="nuevo-lbl">${v.label ?? k}</div>
       </div>`).join("");
 
     const page = document.createElement("div");
