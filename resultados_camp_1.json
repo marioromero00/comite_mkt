@@ -10,80 +10,25 @@
     "clientes_f": 8594
   },
   "clientes_nuevos": {
-    "falabella": {
-      "n": 1531,
-      "pct": 6.7,
-      "label": "Falabella"
+    "campana": {
+      "n": 20619,
+      "pct": 90.8,
+      "label": "Nuevos en campaña"
     },
-    "sub_J1201": {
-      "n": 18619,
-      "pct": 82.0,
-      "label": "ROPA DE CAMA"
+    "sub_J1109": {
+      "n": 4053,
+      "pct": 96.2,
+      "label": "ELECTRODOMESTICOS"
     },
-    "sub_J1204": {
-      "n": 22490,
-      "pct": 99.0,
-      "label": "COJINES DECORATIVOS"
+    "sub_J1501": {
+      "n": 10136,
+      "pct": 88.6,
+      "label": "COCINA"
     },
-    "cls_J110901": {
-      "n": 16828,
-      "pct": 74.1,
-      "label": "ELECT.MENORES"
-    },
-    "cls_J150101": {
-      "n": 22227,
-      "pct": 97.9,
-      "label": "BATERIAS"
-    },
-    "cls_J150102": {
-      "n": 22213,
-      "pct": 97.8,
-      "label": "OLLAS REGULARES"
-    },
-    "cls_J150103": {
-      "n": 22501,
-      "pct": 99.1,
-      "label": "OLLAS ESPECIALES"
-    },
-    "cls_J150104": {
-      "n": 21261,
-      "pct": 93.6,
-      "label": "SARTENES"
-    },
-    "cls_J150105": {
-      "n": 21349,
-      "pct": 94.0,
-      "label": "INFUSIONES Y TERMOS"
-    },
-    "cls_J150106": {
-      "n": 22272,
-      "pct": 98.1,
-      "label": "CONTENEDORES"
-    },
-    "cls_J150114": {
-      "n": 22141,
-      "pct": 97.5,
-      "label": "TEXTIL"
-    },
-    "cls_J150202": {
-      "n": 22079,
-      "pct": 97.2,
-      "label": "VAJILLA GRANEL"
-    },
-    "cls_J150203": {
-      "n": 21723,
-      "pct": 95.6,
-      "label": "TE Y CAFÉ"
-    },
-    "cls_J150205": {
-      "n": 21390,
-      "pct": 94.2,
-      "label": "VIDRIO"
-    },
-    "cls_J150206": {
-      "n": 21894,
-      "pct": 96.4,
-      "label": "SERVIR"
+    "sub_J1502": {
+      "n": 6126,
+      "pct": 90.5,
+      "label": "COMEDOR"
     }
   },
   "genero": {
@@ -196,19 +141,25 @@
       "sublinea_id": "J1501",
       "sublinea_desc": "COCINA",
       "clientes": 11445,
-      "pct": 50.4
+      "pct": 50.4,
+      "clientes_nuevos": 10136,
+      "pct_nuevos": 88.6
     },
     {
       "sublinea_id": "J1502",
       "sublinea_desc": "COMEDOR",
       "clientes": 6766,
-      "pct": 29.8
+      "pct": 29.8,
+      "clientes_nuevos": 6126,
+      "pct_nuevos": 90.5
     },
     {
       "sublinea_id": "J1109",
       "sublinea_desc": "ELECTRODOMESTICOS",
       "clientes": 4215,
-      "pct": 18.6
+      "pct": 18.6,
+      "clientes_nuevos": 4053,
+      "pct_nuevos": 96.2
     }
   ]
 }
