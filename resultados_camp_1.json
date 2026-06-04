@@ -15,20 +15,10 @@
       "pct": 90.8,
       "label": "Nuevos en campaña"
     },
-    "sub_J1109": {
-      "n": 4053,
-      "pct": 96.2,
-      "label": "ELECTRODOMESTICOS"
-    },
-    "sub_J1501": {
-      "n": 10136,
-      "pct": 88.6,
-      "label": "COCINA"
-    },
-    "sub_J1502": {
-      "n": 6126,
-      "pct": 90.5,
-      "label": "COMEDOR"
+    "falabella": {
+      "n": 1531,
+      "pct": 6.7,
+      "label": "Nuevos en Falabella"
     }
   },
   "genero": {
