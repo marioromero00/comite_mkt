@@ -70,56 +70,47 @@
     .page-header h2 { font-size: 1.4rem; font-weight: 700; color: #1e293b; }
     .page-header p  { margin-top: 0.25rem; font-size: 0.82rem; color: var(--muted); }
 
-    /* ── KPI row ────────────────────────────────────── */
-    .kpis {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
-      gap: 1rem;
-      margin-bottom: 1.5rem;
+    /* ── Hero stats ─────────────────────────────────── */
+    .hero-stats {
+      display: flex;
+      flex-wrap: wrap;
+      margin-bottom: 2.5rem;
+      padding-bottom: 1.5rem;
+      border-bottom: 1px solid var(--border);
     }
 
-    .kpi {
-      background: var(--surface);
-      border: 1px solid var(--border);
-      border-radius: 10px;
-      padding: 1.1rem 1.25rem;
-    }
+    .hero-stat { padding: 0 1.75rem; border-left: 1px solid var(--border); }
+    .hero-stat:first-child { padding-left: 0; border-left: none; }
 
-    .kpi-value {
-      font-size: 1.65rem;
+    .hero-value {
+      font-size: 1.95rem;
       font-weight: 700;
       color: #1e293b;
       line-height: 1;
+      letter-spacing: -0.02em;
     }
 
-    .kpi-label {
-      margin-top: 0.35rem;
+    .hero-label {
+      margin-top: 0.4rem;
       font-size: 0.7rem;
       color: var(--muted);
       text-transform: uppercase;
-      letter-spacing: 0.06em;
+      letter-spacing: 0.07em;
     }
 
     /* ── Layout rows ────────────────────────────────── */
-    .row      { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-bottom: 1rem; }
-    .row-full { margin-bottom: 1rem; }
-    @media (max-width: 700px) { .row { grid-template-columns: 1fr; } }
+    .row      { display: grid; grid-template-columns: 1fr 1fr; gap: 2.5rem; margin-bottom: 2.5rem; }
+    .row-full { margin-bottom: 2.5rem; }
+    @media (max-width: 700px) { .row { grid-template-columns: 1fr; gap: 2rem; } }
 
-    /* ── Cards ──────────────────────────────────────── */
-    .card {
-      background: var(--surface);
-      border: 1px solid var(--border);
-      border-radius: 10px;
-      padding: 1.25rem;
-    }
-
-    .card-title {
-      font-size: 0.72rem;
+    /* ── Sections (no boxes — separated by whitespace) ─ */
+    .section-title {
+      font-size: 0.92rem;
       font-weight: 600;
-      text-transform: uppercase;
-      letter-spacing: 0.07em;
-      color: var(--muted);
-      margin-bottom: 1rem;
+      color: #1e293b;
+      letter-spacing: -0.01em;
+      margin-bottom: 1.25rem;
+      line-height: 1.35;
     }
 
     /* ── Gender bar ─────────────────────────────────── */
@@ -144,103 +135,12 @@
       vertical-align: middle;
     }
 
-    /* ── Clientes nuevos accordion ──────────────────── */
-    .accordion-item {
-      border: 1px solid var(--border);
-      border-radius: 8px;
-      overflow: hidden;
-      margin-bottom: 0.5rem;
-    }
+    /* ── Clientes nuevos — cifras destacadas ─────────── */
+    .nuevos-stats { display: flex; gap: 2.5rem; flex-wrap: wrap; }
 
-    .accordion-trigger {
-      width: 100%;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 0.6rem 0.9rem;
-      background: var(--accent-dim);
-      border: none;
-      cursor: pointer;
-      font-size: 0.8rem;
-      font-weight: 600;
-      color: #00875a;
-      text-align: left;
-    }
-
-    .accordion-trigger:hover { background: #d4f0e3; }
-
-    .accordion-arrow {
-      font-size: 0.7rem;
-      transition: transform 0.2s;
-      color: var(--muted);
-    }
-
-    .accordion-trigger.open .accordion-arrow { transform: rotate(180deg); }
-
-    .accordion-body {
-      display: none;
-      padding: 0.65rem 0.9rem;
-      background: var(--surface);
-    }
-
-    .accordion-body.open { display: block; }
-
-    .nuevo-val { font-size: 1.3rem; font-weight: 700; color: #00875a; }
-    .nuevo-pct { font-size: 0.78rem; color: var(--muted); margin-top: 0.1rem; }
-    .nuevo-lbl { font-size: 0.68rem; color: var(--muted); text-transform: uppercase; letter-spacing: 0.04em; }
-
-    /* ── Group list (clase / sublinea) ──────────────── */
-    .group-accordion {
-      border: 1px solid var(--border);
-      border-radius: 8px;
-      overflow: hidden;
-    }
-
-    .group-trigger {
-      width: 100%;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 0.7rem 1rem;
-      background: #f8fafc;
-      border: none;
-      cursor: pointer;
-      font-size: 0.82rem;
-      font-weight: 600;
-      color: var(--text);
-      text-align: left;
-      border-bottom: 1px solid var(--border);
-    }
-
-    .group-trigger:hover { background: #f1f5f9; }
-    .group-trigger.open .accordion-arrow { transform: rotate(180deg); }
-
-    .group-body {
-      display: none;
-      background: var(--surface);
-    }
-
-    .group-body.open { display: block; }
-
-    .group-row {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 0.55rem 1rem;
-      font-size: 0.82rem;
-      border-bottom: 1px solid #f1f5f9;
-    }
-
-    .group-row:last-child { border-bottom: none; }
-
-    .group-row-label { color: var(--text); }
-
-    .group-row-value {
-      font-weight: 600;
-      color: #00875a;
-      white-space: nowrap;
-      margin-left: 1rem;
-    }
+    .nuevo-stat-value { font-size: 1.7rem; font-weight: 700; color: var(--accent); line-height: 1; letter-spacing: -0.02em; }
+    .nuevo-stat-pct   { font-size: 0.8rem; color: var(--text); margin-top: 0.35rem; }
+    .nuevo-stat-label { font-size: 0.68rem; color: var(--muted); text-transform: uppercase; letter-spacing: 0.05em; margin-top: 0.15rem; }
 
     /* ── Status ─────────────────────────────────────── */
     .status { text-align: center; padding: 4rem; color: var(--muted); font-size: 0.875rem; }
@@ -281,6 +181,24 @@
     return chart;
   }
 
+  function makeHBarChart(id, labels, values, valueFmt) {
+    const tickStyle = { color: "#64748b", font: { size: 11 } };
+    return makeChart(id, "bar", {
+      labels,
+      datasets: [{ data: values, backgroundColor: CHART_COLOR, borderRadius: 4, barThickness: 16 }]
+    }, {
+      indexAxis: "y",
+      plugins: {
+        legend: { display: false },
+        tooltip: { callbacks: { label: ctx => ` ${valueFmt(ctx.raw)}` } }
+      },
+      scales: {
+        x: { ticks: tickStyle, grid: { color: "#e2e8f0" } },
+        y: { ticks: tickStyle, grid: { display: false } }
+      }
+    });
+  }
+
   function buildPage(entry, data, idx) {
     const {
       meta = {}, totales = {}, clientes_nuevos = {},
@@ -291,20 +209,55 @@
 
     const pageId = `page-${idx}`;
     const ids = {
-      etario:  `ch-etario-${idx}`,
-      diaria:  `ch-diaria-${idx}`,
+      etario:   `ch-etario-${idx}`,
+      diaria:   `ch-diaria-${idx}`,
+      sublinea: `ch-sublinea-${idx}`,
+      clase:    `ch-clase-${idx}`,
     };
 
-    const nuevosHtml = Object.entries(clientes_nuevos).map(([k, v], i) => `
-      <div class="accordion-item">
-        <button class="accordion-trigger" onclick="toggleAccordion(this)">
-          <span>${v.label ?? k}</span>
-          <span class="accordion-arrow">▼</span>
-        </button>
-        <div class="accordion-body">
-          <div class="nuevo-val">${fmt.num(v.n)}</div>
-          <div class="nuevo-pct">${v.pct}% del total</div>
-        </div>
+    // ── Títulos orientados a conclusión, derivados de los datos ──
+    const avgVenta = venta_diaria.length
+      ? venta_diaria.reduce((s, d) => s + d.venta, 0) / venta_diaria.length
+      : 0;
+    const ventaTitulo = venta_diaria.length
+      ? `Venta diaria — promedio de ${fmt.clpM(avgVenta)} por día`
+      : "Venta diaria";
+
+    const generoLider = (genero.mujeres_pct ?? 0) >= (genero.hombres_pct ?? 0)
+      ? { lbl: "Mujeres", pct: genero.mujeres_pct }
+      : { lbl: "Hombres", pct: genero.hombres_pct };
+    const generoTitulo = `${generoLider.lbl} dominan la categoría — ${generoLider.pct}% de los clientes`;
+
+    const nuevosCampana = clientes_nuevos.campana;
+    const nuevosTitulo = nuevosCampana
+      ? `${nuevosCampana.pct}% de los clientes son nuevos en la campaña`
+      : "Clientes nuevos";
+
+    const etarioTop = rango_etario.reduce((a, b) => (!a || b.pct > a.pct ? b : a), null);
+    const etarioTitulo = etarioTop
+      ? `Mayor concentración en ${etarioTop.rango} años — ${etarioTop.pct}% de los clientes`
+      : "Rango etario";
+
+    const sublineaTop = clientes_por_sublinea[0];
+    const sublineaTitulo = sublineaTop
+      ? `${sublineaTop.sublinea_desc} lidera la campaña — ${sublineaTop.pct}% de los clientes`
+      : "Por sublínea";
+
+    const claseTop = clientes_por_clase[0];
+    const claseTitulo = claseTop
+      ? `${claseTop.clase_desc} es la categoría líder — ${claseTop.pct}% de los clientes`
+      : "Clientes por clase";
+
+    const TOP_CLASES = 6;
+    const clasesTop = [...clientes_por_clase]
+      .sort((a, b) => b.clientes - a.clientes)
+      .slice(0, TOP_CLASES);
+
+    const nuevosHtml = Object.entries(clientes_nuevos).map(([k, v]) => `
+      <div class="nuevo-stat">
+        <div class="nuevo-stat-value">${fmt.num(v.n)}</div>
+        <div class="nuevo-stat-pct">${v.pct}% del total</div>
+        <div class="nuevo-stat-label">${v.label ?? k}</div>
       </div>`).join("");
 
     const page = document.createElement("div");
@@ -316,35 +269,35 @@
         <p>${meta.periodo || ""}</p>
       </div>
 
-      <div class="kpis">
-        <div class="kpi">
-          <div class="kpi-value">${fmt.num(totales.clientes)}</div>
-          <div class="kpi-label">Clientes</div>
+      <div class="hero-stats">
+        <div class="hero-stat">
+          <div class="hero-value">${fmt.num(totales.clientes)}</div>
+          <div class="hero-label">Clientes</div>
         </div>
-        <div class="kpi">
-          <div class="kpi-value">${fmt.clp(totales.venta_total)}</div>
-          <div class="kpi-label">Venta Total</div>
+        <div class="hero-stat">
+          <div class="hero-value">${fmt.clpM(totales.venta_total)}</div>
+          <div class="hero-label">Venta total</div>
         </div>
-        <div class="kpi">
-          <div class="kpi-value">${fmt.clp(totales.ticket_promedio)}</div>
-          <div class="kpi-label">Ticket Promedio</div>
+        <div class="hero-stat">
+          <div class="hero-value">${fmt.clp(totales.ticket_promedio)}</div>
+          <div class="hero-label">Ticket promedio</div>
         </div>
-        <div class="kpi">
-          <div class="kpi-value">${fmt.num(totales.clientes_f)}</div>
-          <div class="kpi-label">Clientes F</div>
+        <div class="hero-stat">
+          <div class="hero-value">${fmt.num(totales.clientes_f)}</div>
+          <div class="hero-label">Clientes F</div>
         </div>
       </div>
 
       <div class="row-full">
-        <div class="card">
-          <div class="card-title">Venta por Día</div>
-          <canvas id="${ids.diaria}" height="110"></canvas>
+        <div class="section">
+          <div class="section-title">${ventaTitulo}</div>
+          <canvas id="${ids.diaria}" height="100"></canvas>
         </div>
       </div>
 
       <div class="row">
-        <div class="card">
-          <div class="card-title">Género</div>
+        <div class="section">
+          <div class="section-title">${generoTitulo}</div>
           <div class="gender-bar">
             <div class="gender-f" style="width:${genero.mujeres_pct ?? 50}%"></div>
             <div class="gender-m" style="width:${genero.hombres_pct ?? 50}%"></div>
@@ -355,51 +308,27 @@
           </div>
         </div>
 
-        <div class="card">
-          <div class="card-title">Clientes Nuevos</div>
-          <div>${nuevosHtml}</div>
+        <div class="section">
+          <div class="section-title">${nuevosTitulo}</div>
+          <div class="nuevos-stats">${nuevosHtml}</div>
         </div>
       </div>
 
       <div class="row">
-        <div class="card">
-          <div class="card-title">Rango Etario</div>
-          <canvas id="${ids.etario}" height="180"></canvas>
+        <div class="section">
+          <div class="section-title">${etarioTitulo}</div>
+          <canvas id="${ids.etario}" height="170"></canvas>
         </div>
-        <div class="card">
-          <div class="card-title">Por Sublínea</div>
-          <div class="group-accordion">
-            <button class="group-trigger" onclick="toggleAccordion(this)">
-              <span>${clientes_por_sublinea.length} sublíneas</span>
-              <span class="accordion-arrow">▼</span>
-            </button>
-            <div class="group-body">
-              ${clientes_por_sublinea.map(r => `
-                <div class="group-row">
-                  <span class="group-row-label">${r.sublinea_desc}</span>
-                  <span class="group-row-value">${fmt.num(r.clientes)}</span>
-                </div>`).join("")}
-            </div>
-          </div>
+        <div class="section">
+          <div class="section-title">${sublineaTitulo}</div>
+          <canvas id="${ids.sublinea}" height="170"></canvas>
         </div>
       </div>
 
       <div class="row-full">
-        <div class="card">
-          <div class="card-title">Clientes por Clase</div>
-          <div class="group-accordion">
-            <button class="group-trigger" onclick="toggleAccordion(this)">
-              <span>${clientes_por_clase.length} clases</span>
-              <span class="accordion-arrow">▼</span>
-            </button>
-            <div class="group-body">
-              ${clientes_por_clase.map(r => `
-                <div class="group-row">
-                  <span class="group-row-label">${r.clase_desc}</span>
-                  <span class="group-row-value">${fmt.num(r.clientes)}</span>
-                </div>`).join("")}
-            </div>
-          </div>
+        <div class="section">
+          <div class="section-title">${claseTitulo}</div>
+          <canvas id="${ids.clase}" height="${Math.max(140, clasesTop.length * 38)}"></canvas>
         </div>
       </div>`;
 
@@ -412,22 +341,37 @@
       if (venta_diaria.length) {
         makeChart(ids.diaria, "line", {
           labels: venta_diaria.map(d => fmtFecha(d.fecha)),
-          datasets: [{
-            data: venta_diaria.map(d => d.venta),
-            borderColor: CHART_COLOR,
-            backgroundColor: "rgba(0,168,89,0.10)",
-            fill: true,
-            tension: 0.35,
-            pointRadius: 3,
-            pointBackgroundColor: "#fff",
-            pointBorderColor: CHART_COLOR,
-            pointBorderWidth: 1.5,
-            pointHoverRadius: 5,
-          }]
+          datasets: [
+            {
+              data: venta_diaria.map(d => d.venta),
+              borderColor: CHART_COLOR,
+              backgroundColor: "rgba(0,168,89,0.10)",
+              fill: true,
+              tension: 0.35,
+              pointRadius: 3,
+              pointBackgroundColor: "#fff",
+              pointBorderColor: CHART_COLOR,
+              pointBorderWidth: 1.5,
+              pointHoverRadius: 5,
+            },
+            {
+              data: venta_diaria.map(() => avgVenta),
+              borderColor: "#94a3b8",
+              borderDash: [6, 4],
+              borderWidth: 1.5,
+              pointRadius: 0,
+              fill: false,
+              tension: 0,
+            }
+          ]
         }, {
           plugins: {
             legend: { display: false },
-            tooltip: { callbacks: { label: ctx => " " + fmt.clp(ctx.raw) } }
+            tooltip: { callbacks: {
+              label: ctx => ctx.datasetIndex === 0
+                ? " " + fmt.clp(ctx.raw)
+                : ` Promedio: ${fmt.clp(ctx.raw)}`
+            } }
           },
           scales: {
             x: {
@@ -454,14 +398,21 @@
         }
       });
 
-    });
-  }
+      if (clientes_por_sublinea.length) {
+        const sorted = [...clientes_por_sublinea].sort((a, b) => b.clientes - a.clientes);
+        makeHBarChart(ids.sublinea,
+          sorted.map(r => r.sublinea_desc),
+          sorted.map(r => r.clientes),
+          v => `${fmt.num(v)} clientes`);
+      }
 
-  function toggleAccordion(btn) {
-    const body = btn.nextElementSibling;
-    const isOpen = body.classList.contains("open");
-    btn.classList.toggle("open", !isOpen);
-    body.classList.toggle("open", !isOpen);
+      if (clasesTop.length) {
+        makeHBarChart(ids.clase,
+          clasesTop.map(r => r.clase_desc),
+          clasesTop.map(r => r.clientes),
+          v => `${fmt.num(v)} clientes`);
+      }
+    });
   }
 
   function switchTab(idx) {
