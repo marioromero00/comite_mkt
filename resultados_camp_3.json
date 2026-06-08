@@ -1,0 +1,399 @@
+{
+  "meta": {
+    "campana": "BedTime",
+    "periodo": "05 may — 31 may 2026"
+  },
+  "totales": {
+    "clientes": 61055,
+    "venta_total": 2297526336,
+    "ticket_promedio": 29797,
+    "clientes_f": 25853
+  },
+  "clientes_nuevos": {
+    "campana": {
+      "n": 49195,
+      "pct": 80.6,
+      "label": "Nuevos en campaña"
+    },
+    "falabella": {
+      "n": 3089,
+      "pct": 5.1,
+      "label": "Nuevos en Falabella"
+    }
+  },
+  "genero": {
+    "mujeres_pct": 69.0,
+    "hombres_pct": 31.0
+  },
+  "rango_etario": [
+    {
+      "rango": "18-25",
+      "clientes": 3157,
+      "pct": 5.2
+    },
+    {
+      "rango": "26-35",
+      "clientes": 12343,
+      "pct": 20.5
+    },
+    {
+      "rango": "36-45",
+      "clientes": 14945,
+      "pct": 24.8
+    },
+    {
+      "rango": "46-55",
+      "clientes": 12622,
+      "pct": 21.0
+    },
+    {
+      "rango": "56+",
+      "clientes": 17151,
+      "pct": 28.5
+    }
+  ],
+  "clientes_por_clase": [
+    {
+      "clase_id": "J120101",
+      "clase_desc": "SABANAS",
+      "clientes": 14848,
+      "pct": 24.3
+    },
+    {
+      "clase_id": "J120103",
+      "clase_desc": "PLUMON SINTETICO",
+      "clientes": 12490,
+      "pct": 20.5
+    },
+    {
+      "clase_id": "J120105",
+      "clase_desc": "CUBRECAMAS",
+      "clientes": 9558,
+      "pct": 15.7
+    },
+    {
+      "clase_id": "J120107",
+      "clase_desc": "ACCESORIOS DECORATIVOS",
+      "clientes": 6434,
+      "pct": 10.5
+    },
+    {
+      "clase_id": "J120201",
+      "clase_desc": "TOALLAS",
+      "clientes": 5722,
+      "pct": 9.4
+    },
+    {
+      "clase_id": "J120106",
+      "clase_desc": "FRAZADAS",
+      "clientes": 4982,
+      "pct": 8.2
+    },
+    {
+      "clase_id": "J120204",
+      "clase_desc": "ACCESORIOS BAÑO",
+      "clientes": 1939,
+      "pct": 3.2
+    },
+    {
+      "clase_id": "J120108",
+      "clase_desc": "FUNDA PLUMON",
+      "clientes": 1186,
+      "pct": 1.9
+    },
+    {
+      "clase_id": "J120302",
+      "clase_desc": "PLUMON INFANTIL",
+      "clientes": 1179,
+      "pct": 1.9
+    },
+    {
+      "clase_id": "J120203",
+      "clase_desc": "PISOS",
+      "clientes": 1018,
+      "pct": 1.7
+    },
+    {
+      "clase_id": "J120202",
+      "clase_desc": "CORTINAS DE BANO",
+      "clientes": 957,
+      "pct": 1.6
+    },
+    {
+      "clase_id": "J120102",
+      "clase_desc": "PLUMONES DE PLUMA",
+      "clientes": 886,
+      "pct": 1.5
+    },
+    {
+      "clase_id": "J120301",
+      "clase_desc": "SABANA INFANTIL",
+      "clientes": 873,
+      "pct": 1.4
+    },
+    {
+      "clase_id": "J120104",
+      "clase_desc": "JUEGOS DE CAMA",
+      "clientes": 805,
+      "pct": 1.3
+    },
+    {
+      "clase_id": "J120403",
+      "clase_desc": "COJINES PROMOCIONAL",
+      "clientes": 788,
+      "pct": 1.3
+    },
+    {
+      "clase_id": "J120401",
+      "clase_desc": "COJINES CON RELLENO",
+      "clientes": 784,
+      "pct": 1.3
+    },
+    {
+      "clase_id": "J120305",
+      "clase_desc": "ACCESORIOS DECORATIVOS",
+      "clientes": 748,
+      "pct": 1.2
+    },
+    {
+      "clase_id": "J120303",
+      "clase_desc": "CUBRECAMA INFANTIL",
+      "clientes": 507,
+      "pct": 0.8
+    },
+    {
+      "clase_id": "J120308",
+      "clase_desc": "JUEGO DE CAMA INFANTIL",
+      "clientes": 475,
+      "pct": 0.8
+    },
+    {
+      "clase_id": "J120111",
+      "clase_desc": "ACCESORIOS TECNICOS",
+      "clientes": 186,
+      "pct": 0.3
+    },
+    {
+      "clase_id": "J120306",
+      "clase_desc": "ACCESORIOS NINOS",
+      "clientes": 115,
+      "pct": 0.2
+    },
+    {
+      "clase_id": "J120801",
+      "clase_desc": "IMPULSORES CAMA",
+      "clientes": 105,
+      "pct": 0.2
+    },
+    {
+      "clase_id": "J130101",
+      "clase_desc": "JUEGOS DE LIVING",
+      "clientes": 59,
+      "pct": 0.1
+    },
+    {
+      "clase_id": "J120304",
+      "clase_desc": "FUNDA PLUMON",
+      "clientes": 47,
+      "pct": 0.1
+    },
+    {
+      "clase_id": "J120402",
+      "clase_desc": "FUNDA DE COJIN",
+      "clientes": 36,
+      "pct": 0.1
+    },
+    {
+      "clase_id": "J120307",
+      "clase_desc": "BANO INFANTIL",
+      "clientes": 32,
+      "pct": 0.1
+    },
+    {
+      "clase_id": "J120802",
+      "clase_desc": "IMPULSORES BAÑO",
+      "clientes": 24,
+      "pct": 0.0
+    },
+    {
+      "clase_id": "J120601",
+      "clase_desc": "TOALLA JACQUARD",
+      "clientes": 8,
+      "pct": 0.0
+    },
+    {
+      "clase_id": "J120602",
+      "clase_desc": "TOALLA PRINT",
+      "clientes": 6,
+      "pct": 0.0
+    }
+  ],
+  "clientes_por_sublinea": [
+    {
+      "sublinea_id": "J1201",
+      "sublinea_desc": "ROPA DE CAMA",
+      "clientes": 43877,
+      "pct": 71.9,
+      "clientes_nuevos": 33449,
+      "pct_nuevos": 76.2
+    },
+    {
+      "sublinea_id": "J1202",
+      "sublinea_desc": "ROPA DE BAÑO",
+      "clientes": 8647,
+      "pct": 14.2,
+      "clientes_nuevos": 7336,
+      "pct_nuevos": 84.8
+    },
+    {
+      "sublinea_id": "J1203",
+      "sublinea_desc": "DECO INFANTIL",
+      "clientes": 3574,
+      "pct": 5.9,
+      "clientes_nuevos": 3323,
+      "pct_nuevos": 93.0
+    },
+    {
+      "sublinea_id": "J1204",
+      "sublinea_desc": "COJINES DECORATIVOS",
+      "clientes": 1527,
+      "pct": 2.5,
+      "clientes_nuevos": 1452,
+      "pct_nuevos": 95.1
+    },
+    {
+      "sublinea_id": "J1208",
+      "sublinea_desc": "IMPULSORES BLANCO",
+      "clientes": 119,
+      "pct": 0.2,
+      "clientes_nuevos": 115,
+      "pct_nuevos": 96.6
+    },
+    {
+      "sublinea_id": "J1301",
+      "sublinea_desc": "TAPICERIA",
+      "clientes": 59,
+      "pct": 0.1,
+      "clientes_nuevos": 59,
+      "pct_nuevos": 100.0
+    },
+    {
+      "sublinea_id": "J1206",
+      "sublinea_desc": "PLAYA",
+      "clientes": 12,
+      "pct": 0.0,
+      "clientes_nuevos": 11,
+      "pct_nuevos": 91.7
+    }
+  ],
+  "venta_diaria": [
+    {
+      "fecha": "2026-05-05",
+      "venta": 90230676
+    },
+    {
+      "fecha": "2026-05-06",
+      "venta": 83614522
+    },
+    {
+      "fecha": "2026-05-07",
+      "venta": 97857424
+    },
+    {
+      "fecha": "2026-05-08",
+      "venta": 97077378
+    },
+    {
+      "fecha": "2026-05-09",
+      "venta": 123183668
+    },
+    {
+      "fecha": "2026-05-10",
+      "venta": 77836287
+    },
+    {
+      "fecha": "2026-05-11",
+      "venta": 70882635
+    },
+    {
+      "fecha": "2026-05-12",
+      "venta": 69478079
+    },
+    {
+      "fecha": "2026-05-13",
+      "venta": 70403624
+    },
+    {
+      "fecha": "2026-05-14",
+      "venta": 71008999
+    },
+    {
+      "fecha": "2026-05-15",
+      "venta": 80500409
+    },
+    {
+      "fecha": "2026-05-16",
+      "venta": 99698264
+    },
+    {
+      "fecha": "2026-05-17",
+      "venta": 97190843
+    },
+    {
+      "fecha": "2026-05-18",
+      "venta": 76653994
+    },
+    {
+      "fecha": "2026-05-19",
+      "venta": 74060230
+    },
+    {
+      "fecha": "2026-05-20",
+      "venta": 71953913
+    },
+    {
+      "fecha": "2026-05-21",
+      "venta": 96920370
+    },
+    {
+      "fecha": "2026-05-22",
+      "venta": 97419714
+    },
+    {
+      "fecha": "2026-05-23",
+      "venta": 107783686
+    },
+    {
+      "fecha": "2026-05-24",
+      "venta": 98109276
+    },
+    {
+      "fecha": "2026-05-25",
+      "venta": 79890296
+    },
+    {
+      "fecha": "2026-05-26",
+      "venta": 66774890
+    },
+    {
+      "fecha": "2026-05-27",
+      "venta": 62737135
+    },
+    {
+      "fecha": "2026-05-28",
+      "venta": 60074912
+    },
+    {
+      "fecha": "2026-05-29",
+      "venta": 67217407
+    },
+    {
+      "fecha": "2026-05-30",
+      "venta": 95634729
+    },
+    {
+      "fecha": "2026-05-31",
+      "venta": 113332976
+    }
+  ]
+}
