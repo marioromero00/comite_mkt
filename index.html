@@ -9,7 +9,7 @@
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
     :root {
-      --bg:        #f0f4f8;
+      --bg:        #ffffff;
       --surface:   #ffffff;
       --border:    #dde3ea;
       --text:      #1e293b;
@@ -67,7 +67,7 @@
     .page.active { display: block; }
 
     .page-header { margin-bottom: 1.75rem; }
-    .page-header h2 { font-size: 1.4rem; font-weight: 700; color: #1e293b; }
+    .page-header h2 { font-size: 2.2rem; font-weight: 800; color: #1e293b; letter-spacing: -0.02em; }
     .page-header p  { margin-top: 0.25rem; font-size: 0.82rem; color: var(--muted); }
 
     /* ── Hero stats ─────────────────────────────────── */
@@ -181,7 +181,7 @@
     return chart;
   }
 
-  function makeHBarChart(id, labels, values, valueFmt) {
+  function makeHBarChart(id, labels, values, valueFmt, extraLines) {
     const tickStyle = { color: "#64748b", font: { size: 11 } };
     return makeChart(id, "bar", {
       labels,
@@ -190,7 +190,11 @@
       indexAxis: "y",
       plugins: {
         legend: { display: false },
-        tooltip: { callbacks: { label: ctx => ` ${valueFmt(ctx.raw)}` } }
+        tooltip: { callbacks: { label: ctx => {
+          const lines = [` ${valueFmt(ctx.raw)}`];
+          if (extraLines) lines.push(...extraLines(ctx.dataIndex));
+          return lines;
+        } } }
       },
       scales: {
         x: { ticks: tickStyle, grid: { color: "#e2e8f0" } },
@@ -240,7 +244,7 @@
 
     const sublineaTop = clientes_por_sublinea[0];
     const sublineaTitulo = sublineaTop
-      ? `${sublineaTop.sublinea_desc} lidera la campaña — ${sublineaTop.pct}% de los clientes`
+      ? `${sublineaTop.sublinea_desc} lidera la campaña — ${sublineaTop.pct_nuevos}% de sus clientes son nuevos`
       : "Por sublínea";
 
     const claseTop = clientes_por_clase[0];
@@ -403,7 +407,8 @@
         makeHBarChart(ids.sublinea,
           sorted.map(r => r.sublinea_desc),
           sorted.map(r => r.clientes),
-          v => `${fmt.num(v)} clientes`);
+          v => `${fmt.num(v)} clientes`,
+          i => [` ${fmt.num(sorted[i].clientes_nuevos)} nuevos (${sorted[i].pct_nuevos}%)`]);
       }
 
       if (clasesTop.length) {
