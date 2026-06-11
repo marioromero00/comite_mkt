@@ -9,7 +9,9 @@
       "Bash(npm init *)",
       "Bash(npm install *)",
       "Bash(npx playwright *)",
-      "Read(//tmp/shot/**)"
+      "Read(//tmp/shot/**)",
+      "Bash(pkill -f \"http.server 8744\")",
+      "Bash(rm -rf /tmp/dash_test /tmp/shot2 /tmp/camp1_test.json /tmp/server2.log)"
     ]
   }
 }

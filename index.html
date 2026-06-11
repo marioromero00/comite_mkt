@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Campaign Dashboard</title>
   <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.2/dist/chart.umd.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@2.2.0/dist/chartjs-plugin-datalabels.min.js"></script>
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
@@ -173,6 +174,9 @@
 
   const CHART_COLOR = "#00a859";
 
+  Chart.register(ChartDataLabels);
+  Chart.defaults.set("plugins.datalabels", { display: false });
+
   let chartInstances = [];
 
   function makeChart(id, type, data, options) {
@@ -181,20 +185,30 @@
     return chart;
   }
 
-  function makeHBarChart(id, labels, values, valueFmt, extraLines) {
+  function makeHBarChart(id, labels, values, valueFmt, extraLines, sideLabelFmt) {
     const tickStyle = { color: "#64748b", font: { size: 11 } };
     return makeChart(id, "bar", {
       labels,
       datasets: [{ data: values, backgroundColor: CHART_COLOR, borderRadius: 4, barThickness: 16 }]
     }, {
       indexAxis: "y",
+      layout: { padding: { right: sideLabelFmt ? 80 : 0 } },
       plugins: {
         legend: { display: false },
         tooltip: { callbacks: { label: ctx => {
           const lines = [` ${valueFmt(ctx.raw)}`];
           if (extraLines) lines.push(...extraLines(ctx.dataIndex));
           return lines;
-        } } }
+        } } },
+        datalabels: sideLabelFmt ? {
+          display: true,
+          anchor: "end",
+          align: "right",
+          clip: false,
+          color: "#64748b",
+          font: { size: 11, weight: "600" },
+          formatter: (_, ctx) => sideLabelFmt(ctx.dataIndex)
+        } : { display: false }
       },
       scales: {
         x: { ticks: tickStyle, grid: { color: "#e2e8f0" } },
@@ -404,14 +418,13 @@
 
       if (clientes_por_sublinea.length) {
         const sorted = [...clientes_por_sublinea].sort((a, b) => b.clientes - a.clientes);
+        const hasTicket = sorted.every(r => r.ticket_promedio != null);
         makeHBarChart(ids.sublinea,
           sorted.map(r => r.sublinea_desc),
           sorted.map(r => r.clientes),
           v => `${fmt.num(v)} clientes`,
-          i => [
-            ` ${fmt.num(sorted[i].clientes_nuevos)} nuevos (${sorted[i].pct_nuevos}%)`,
-            sorted[i].ticket_promedio != null ? ` Ticket promedio: ${fmt.clp(sorted[i].ticket_promedio)}` : null
-          ].filter(Boolean));
+          i => [` ${fmt.num(sorted[i].clientes_nuevos)} nuevos (${sorted[i].pct_nuevos}%)`],
+          hasTicket ? i => fmt.clp(sorted[i].ticket_promedio) : null);
       }
 
       if (clasesTop.length) {
