@@ -408,7 +408,10 @@
           sorted.map(r => r.sublinea_desc),
           sorted.map(r => r.clientes),
           v => `${fmt.num(v)} clientes`,
-          i => [` ${fmt.num(sorted[i].clientes_nuevos)} nuevos (${sorted[i].pct_nuevos}%)`]);
+          i => [
+            ` ${fmt.num(sorted[i].clientes_nuevos)} nuevos (${sorted[i].pct_nuevos}%)`,
+            sorted[i].ticket_promedio != null ? ` Ticket promedio: ${fmt.clp(sorted[i].ticket_promedio)}` : null
+          ].filter(Boolean));
       }
 
       if (clasesTop.length) {

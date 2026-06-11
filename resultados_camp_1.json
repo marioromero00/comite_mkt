@@ -133,7 +133,8 @@
       "clientes": 11445,
       "pct": 47.5,
       "clientes_nuevos": 10136,
-      "pct_nuevos": 88.6
+      "pct_nuevos": 88.6,
+      "ticket_promedio": 26649
     },
     {
       "sublinea_id": "J1502",
@@ -141,7 +142,8 @@
       "clientes": 6766,
       "pct": 28.1,
       "clientes_nuevos": 6126,
-      "pct_nuevos": 90.5
+      "pct_nuevos": 90.5,
+      "ticket_promedio": 9154
     },
     {
       "sublinea_id": "J1109",
@@ -149,7 +151,8 @@
       "clientes": 5664,
       "pct": 23.5,
       "clientes_nuevos": 5419,
-      "pct_nuevos": 95.7
+      "pct_nuevos": 95.7,
+      "ticket_promedio": 79215
     }
   ],
   "venta_diaria": [
