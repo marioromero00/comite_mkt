@@ -4,52 +4,52 @@
     "periodo": "05 may — 31 may 2026"
   },
   "totales": {
-    "clientes": 22713,
-    "venta_total": 879282193,
-    "ticket_promedio": 35986,
-    "clientes_f": 8594
+    "clientes": 24116,
+    "venta_total": 913163471,
+    "ticket_promedio": 35263,
+    "clientes_f": 8974
   },
   "clientes_nuevos": {
     "campana": {
-      "n": 20619,
-      "pct": 90.8,
+      "n": 21940,
+      "pct": 91.0,
       "label": "Nuevos en campaña"
     },
     "falabella": {
-      "n": 1531,
-      "pct": 6.7,
+      "n": 1674,
+      "pct": 6.9,
       "label": "Nuevos en Falabella"
     }
   },
   "genero": {
-    "mujeres_pct": 64.5,
-    "hombres_pct": 35.5
+    "mujeres_pct": 64.0,
+    "hombres_pct": 36.0
   },
   "rango_etario": [
     {
       "rango": "18-25",
-      "clientes": 1051,
-      "pct": 4.7
+      "clientes": 1182,
+      "pct": 5.0
     },
     {
       "rango": "26-35",
-      "clientes": 4488,
-      "pct": 20.1
+      "clientes": 4870,
+      "pct": 20.6
     },
     {
       "rango": "36-45",
-      "clientes": 5549,
-      "pct": 24.9
+      "clientes": 5933,
+      "pct": 25.1
     },
     {
       "rango": "46-55",
-      "clientes": 4792,
-      "pct": 21.5
+      "clientes": 5019,
+      "pct": 21.2
     },
     {
       "rango": "56+",
-      "clientes": 6416,
-      "pct": 28.8
+      "clientes": 6654,
+      "pct": 28.1
     }
   ],
   "clientes_por_clase": [
@@ -57,55 +57,55 @@
       "clase_id": "J150104",
       "clase_desc": "SARTENES",
       "clientes": 6713,
-      "pct": 29.6
+      "pct": 27.8
+    },
+    {
+      "clase_id": "J110901",
+      "clase_desc": "ELECT.MENORES",
+      "clientes": 5664,
+      "pct": 23.5
     },
     {
       "clase_id": "J150203",
       "clase_desc": "TE Y CAFÉ",
       "clientes": 5503,
-      "pct": 24.2
-    },
-    {
-      "clase_id": "J110901",
-      "clase_desc": "ELECT.MENORES",
-      "clientes": 4215,
-      "pct": 18.6
+      "pct": 22.8
     },
     {
       "clase_id": "J150101",
       "clase_desc": "BATERIAS",
       "clientes": 1581,
-      "pct": 7.0
+      "pct": 6.6
     },
     {
       "clase_id": "J150102",
       "clase_desc": "OLLAS REGULARES",
       "clientes": 1378,
-      "pct": 6.1
+      "pct": 5.7
     },
     {
       "clase_id": "J150105",
       "clase_desc": "INFUSIONES Y TERMOS",
       "clientes": 1263,
-      "pct": 5.6
+      "pct": 5.2
     },
     {
       "clase_id": "J150103",
       "clase_desc": "OLLAS ESPECIALES",
       "clientes": 1120,
-      "pct": 4.9
+      "pct": 4.6
     },
     {
       "clase_id": "J150202",
       "clase_desc": "VAJILLA GRANEL",
       "clientes": 974,
-      "pct": 4.3
+      "pct": 4.0
     },
     {
       "clase_id": "J150206",
       "clase_desc": "SERVIR",
       "clientes": 347,
-      "pct": 1.5
+      "pct": 1.4
     },
     {
       "clase_id": "J150205",
@@ -131,7 +131,7 @@
       "sublinea_id": "J1501",
       "sublinea_desc": "COCINA",
       "clientes": 11445,
-      "pct": 50.4,
+      "pct": 47.5,
       "clientes_nuevos": 10136,
       "pct_nuevos": 88.6
     },
@@ -139,127 +139,127 @@
       "sublinea_id": "J1502",
       "sublinea_desc": "COMEDOR",
       "clientes": 6766,
-      "pct": 29.8,
+      "pct": 28.1,
       "clientes_nuevos": 6126,
       "pct_nuevos": 90.5
     },
     {
       "sublinea_id": "J1109",
       "sublinea_desc": "ELECTRODOMESTICOS",
-      "clientes": 4215,
-      "pct": 18.6,
-      "clientes_nuevos": 4053,
-      "pct_nuevos": 96.2
+      "clientes": 5664,
+      "pct": 23.5,
+      "clientes_nuevos": 5419,
+      "pct_nuevos": 95.7
     }
   ],
   "venta_diaria": [
     {
       "fecha": "2026-05-05",
-      "venta": 39907267
+      "venta": 41689285
     },
     {
       "fecha": "2026-05-06",
-      "venta": 42195581
+      "venta": 44508156
     },
     {
       "fecha": "2026-05-07",
-      "venta": 47453847
+      "venta": 49247565
     },
     {
       "fecha": "2026-05-08",
-      "venta": 45920937
+      "venta": 47703638
     },
     {
       "fecha": "2026-05-09",
-      "venta": 62001283
+      "venta": 64410830
     },
     {
       "fecha": "2026-05-10",
-      "venta": 31797378
+      "venta": 32854722
     },
     {
       "fecha": "2026-05-11",
-      "venta": 31815627
+      "venta": 32897992
     },
     {
       "fecha": "2026-05-12",
-      "venta": 28961495
+      "venta": 30487557
     },
     {
       "fecha": "2026-05-13",
-      "venta": 28011580
+      "venta": 29324970
     },
     {
       "fecha": "2026-05-14",
-      "venta": 26906483
+      "venta": 28366898
     },
     {
       "fecha": "2026-05-15",
-      "venta": 30655953
+      "venta": 31959783
     },
     {
       "fecha": "2026-05-16",
-      "venta": 38535738
+      "venta": 39541724
     },
     {
       "fecha": "2026-05-17",
-      "venta": 32569703
+      "venta": 34088590
     },
     {
       "fecha": "2026-05-18",
-      "venta": 24300783
+      "venta": 25530951
     },
     {
       "fecha": "2026-05-19",
-      "venta": 25507456
+      "venta": 26308754
     },
     {
       "fecha": "2026-05-20",
-      "venta": 25601408
+      "venta": 26693226
     },
     {
       "fecha": "2026-05-21",
-      "venta": 30795439
+      "venta": 31978149
     },
     {
       "fecha": "2026-05-22",
-      "venta": 26559342
+      "venta": 27284711
     },
     {
       "fecha": "2026-05-23",
-      "venta": 33715268
+      "venta": 34666557
     },
     {
       "fecha": "2026-05-24",
-      "venta": 31913072
+      "venta": 32808849
     },
     {
       "fecha": "2026-05-25",
-      "venta": 23397540
+      "venta": 24570172
     },
     {
       "fecha": "2026-05-26",
-      "venta": 23129894
+      "venta": 23835767
     },
     {
       "fecha": "2026-05-27",
-      "venta": 22841825
+      "venta": 23539481
     },
     {
       "fecha": "2026-05-28",
-      "venta": 22433762
+      "venta": 23040249
     },
     {
       "fecha": "2026-05-29",
-      "venta": 27101191
+      "venta": 27968539
     },
     {
       "fecha": "2026-05-30",
-      "venta": 31873188
+      "venta": 32924967
     },
     {
       "fecha": "2026-05-31",
-      "venta": 43379153
+      "venta": 44931389
     }
   ]
 }
