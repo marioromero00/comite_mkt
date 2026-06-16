@@ -11,7 +11,10 @@
       "Bash(npx playwright *)",
       "Read(//tmp/shot/**)",
       "Bash(pkill -f \"http.server 8744\")",
-      "Bash(rm -rf /tmp/dash_test /tmp/shot2 /tmp/camp1_test.json /tmp/server2.log)"
+      "Bash(rm -rf /tmp/dash_test /tmp/shot2 /tmp/camp1_test.json /tmp/server2.log)",
+      "Bash(python3 -m http.server 8123)",
+      "Read(//private/tmp/**)",
+      "Read(//tmp/**)"
     ]
   }
 }

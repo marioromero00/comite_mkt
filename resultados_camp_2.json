@@ -97,7 +97,8 @@
       "clientes": 652,
       "pct": 81.1,
       "clientes_nuevos": 598,
-      "pct_nuevos": 91.7
+      "pct_nuevos": 91.7,
+      "ticket_promedio": 59257
     },
     {
       "sublinea_id": "J1204",
@@ -105,7 +106,8 @@
       "clientes": 188,
       "pct": 23.4,
       "clientes_nuevos": 179,
-      "pct_nuevos": 95.2
+      "pct_nuevos": 95.2,
+      "ticket_promedio": 90509
     }
   ],
   "venta_diaria": [

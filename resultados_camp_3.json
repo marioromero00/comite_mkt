@@ -1,6 +1,6 @@
 {
   "meta": {
-    "campana": "BedTime",
+    "campana": "Bed Time",
     "periodo": "05 may — 31 may 2026"
   },
   "totales": {
@@ -235,7 +235,8 @@
       "clientes": 43877,
       "pct": 71.9,
       "clientes_nuevos": 33449,
-      "pct_nuevos": 76.2
+      "pct_nuevos": 76.2,
+      "ticket_promedio": 32427
     },
     {
       "sublinea_id": "J1202",
@@ -243,7 +244,8 @@
       "clientes": 8647,
       "pct": 14.2,
       "clientes_nuevos": 7336,
-      "pct_nuevos": 84.8
+      "pct_nuevos": 84.8,
+      "ticket_promedio": 17320
     },
     {
       "sublinea_id": "J1203",
@@ -251,7 +253,8 @@
       "clientes": 3574,
       "pct": 5.9,
       "clientes_nuevos": 3323,
-      "pct_nuevos": 93.0
+      "pct_nuevos": 93.0,
+      "ticket_promedio": 22020
     },
     {
       "sublinea_id": "J1204",
@@ -259,7 +262,8 @@
       "clientes": 1527,
       "pct": 2.5,
       "clientes_nuevos": 1452,
-      "pct_nuevos": 95.1
+      "pct_nuevos": 95.1,
+      "ticket_promedio": 23976
     },
     {
       "sublinea_id": "J1208",
@@ -267,7 +271,8 @@
       "clientes": 119,
       "pct": 0.2,
       "clientes_nuevos": 115,
-      "pct_nuevos": 96.6
+      "pct_nuevos": 96.6,
+      "ticket_promedio": 13730
     },
     {
       "sublinea_id": "J1301",
@@ -275,7 +280,8 @@
       "clientes": 59,
       "pct": 0.1,
       "clientes_nuevos": 59,
-      "pct_nuevos": 100.0
+      "pct_nuevos": 100.0,
+      "ticket_promedio": 34388
     },
     {
       "sublinea_id": "J1206",
@@ -283,7 +289,8 @@
       "clientes": 12,
       "pct": 0.0,
       "clientes_nuevos": 11,
-      "pct_nuevos": 91.7
+      "pct_nuevos": 91.7,
+      "ticket_promedio": 19201
     }
   ],
   "venta_diaria": [

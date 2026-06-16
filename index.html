@@ -105,6 +105,15 @@
     @media (max-width: 700px) { .row { grid-template-columns: 1fr; gap: 2rem; } }
 
     /* ── Sections (no boxes — separated by whitespace) ─ */
+    .section-kicker {
+      font-size: 0.7rem;
+      font-weight: 700;
+      color: var(--accent);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      margin-bottom: 0.4rem;
+    }
+
     .section-title {
       font-size: 0.92rem;
       font-weight: 600;
@@ -308,6 +317,7 @@
 
       <div class="row-full">
         <div class="section">
+          <div class="section-kicker">Venta diaria</div>
           <div class="section-title">${ventaTitulo}</div>
           <canvas id="${ids.diaria}" height="100"></canvas>
         </div>
@@ -315,6 +325,7 @@
 
       <div class="row">
         <div class="section">
+          <div class="section-kicker">Género</div>
           <div class="section-title">${generoTitulo}</div>
           <div class="gender-bar">
             <div class="gender-f" style="width:${genero.mujeres_pct ?? 50}%"></div>
@@ -327,6 +338,7 @@
         </div>
 
         <div class="section">
+          <div class="section-kicker">Clientes nuevos</div>
           <div class="section-title">${nuevosTitulo}</div>
           <div class="nuevos-stats">${nuevosHtml}</div>
         </div>
@@ -334,10 +346,12 @@
 
       <div class="row">
         <div class="section">
+          <div class="section-kicker">Rango etario</div>
           <div class="section-title">${etarioTitulo}</div>
           <canvas id="${ids.etario}" height="170"></canvas>
         </div>
         <div class="section">
+          <div class="section-kicker">Por sublínea — clientes y ticket promedio</div>
           <div class="section-title">${sublineaTitulo}</div>
           <canvas id="${ids.sublinea}" height="170"></canvas>
         </div>
@@ -345,6 +359,7 @@
 
       <div class="row-full">
         <div class="section">
+          <div class="section-kicker">Clientes por clase</div>
           <div class="section-title">${claseTitulo}</div>
           <canvas id="${ids.clase}" height="${Math.max(140, clasesTop.length * 38)}"></canvas>
         </div>
